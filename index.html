@@ -12,118 +12,109 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:'Poppins',sans-serif;background:#0d0d1a;color:#fff;overflow-x:hidden;min-height:100vh}
-    :root{--pink:#ff69b4;--pink-dark:#ff1493;--purple:#9b59b6;--glass-bg:rgba(255,255,255,0.08);--glass-border:rgba(255,255,255,0.15);--font-display:'Dancing Script',cursive;--font-body:'Poppins',sans-serif}
+    body{font-family:'Poppins',sans-serif;background:#06060c;color:#fff;overflow-x:hidden;min-height:100vh}
+    :root{--pink:#ff69b4;--pink-dark:#ff1493;--purple:#9b59b6;--glass-bg:rgba(255,255,255,0.12);--glass-border:rgba(255,255,255,0.2);--font-display:'Dancing Script',cursive;--font-body:'Poppins',sans-serif}
     .hidden{display:none!important}
-    .section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 20px 60px;position:relative;background:#0d0d1a;overflow:hidden}
-    .section-title{font-family:var(--font-display);font-size:2.5rem;margin-bottom:40px;text-align:center}
-    @media(max-width:600px){.section-title{font-size:1.8rem}}
-    .glow-text{text-shadow:0 0 10px var(--pink),0 0 20px var(--pink-dark),0 0 40px var(--purple)}
-    .glow-pink{box-shadow:0 0 15px rgba(255,105,180,0.4),0 0 30px rgba(255,20,147,0.2)}
-    .glow-pink:hover{box-shadow:0 0 25px rgba(255,105,180,0.6),0 0 50px rgba(255,20,147,0.4)}
-    .glass{background:var(--glass-bg);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--glass-border);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.3)}
-    .btn-primary{padding:14px 36px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .3s ease;font-family:var(--font-body)}
-    .btn-primary:hover{transform:translateY(-3px) scale(1.02)}
-    .btn-large{padding:20px 50px;font-size:1.4rem}
-    #loader{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse at center,#1a0a2e,#0d0d1a);display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s ease}
+    .section{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;position:relative;background:#06060c;overflow:hidden}
+    .section-title{font-family:var(--font-display);font-size:2.8rem;margin-bottom:25px;text-align:center;color:#fff}
+    .glow-text{text-shadow:0 0 10px var(--pink),0 0 20px var(--pink-dark)}
+    .glow-pink{box-shadow:0 0 15px rgba(255,105,180,0.4)}
+    .glow-pink:hover{box-shadow:0 0 25px rgba(255,105,180,0.7);transform:translateY(-3px)}
+    .glass{background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+    .btn-primary{padding:12px 30px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s ease;font-family:var(--font-body)}
+    .btn-large{padding:15px 40px;font-size:1.2rem}
+    #loader{position:fixed;inset:0;z-index:9999;background:#06060c;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease,visibility .5s ease}
     #loader.hidden-loader{opacity:0;visibility:hidden;pointer-events:none}
     .loader-content{text-align:center}
-    .loader-logo{margin-bottom:30px}
     .loader-heart{font-size:4rem;animation:heartbeat 1s ease-in-out infinite;display:block}
-    .loader-text{font-family:var(--font-display);font-size:2.5rem;color:var(--pink);text-shadow:0 0 30px var(--pink)}
+    .loader-text{font-family:var(--font-display);font-size:2.5rem;color:var(--pink);text-shadow:0 0 20px var(--pink)}
     @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-    .loader-bar-track{width:300px;height:6px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;margin:20px auto}
-    .loader-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--purple));border-radius:10px;transition:width .1s linear}
-    .loader-percent{font-size:1.2rem;color:var(--pink);font-weight:600}
-    #passwordScreen{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#1a0a2e,#0d0d1a)}
+    .loader-bar-track{width:260px;height:6px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;margin:15px auto}
+    .loader-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pink),var(--purple));border-radius:10px}
+    .loader-percent{font-size:1.1rem;color:var(--pink);font-weight:600}
+    #passwordScreen{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:#06060c}
     #passwordScreen canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-    .password-card{position:relative;z-index:2;padding:50px 40px;text-align:center;max-width:420px;width:90%;transition:transform .5s ease,opacity .5s ease}
-    .password-card.unlocked{transform:scale(1.5);opacity:0;pointer-events:none}
-    .lock-icon{font-size:3rem;color:var(--pink);margin-bottom:15px;animation:float 3s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .password-card h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:8px}
-    .password-hint{color:rgba(255,255,255,0.6);font-size:.9rem;margin-bottom:20px}
-    .password-input-wrap{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px}
-    .password-input-wrap input{width:160px;padding:14px 20px;font-size:1.8rem;text-align:center;border:2px solid var(--glass-border);border-radius:12px;background:rgba(255,255,255,0.05);color:#fff;letter-spacing:8px;outline:none;transition:border-color .3s}
+    .password-card{position:relative;z-index:2;padding:40px 30px;text-align:center;max-width:380px;width:90%;transition:all .5s ease}
+    .password-card.unlocked{transform:scale(1.3);opacity:0;pointer-events:none}
+    .lock-icon{font-size:2.5rem;color:var(--pink);margin-bottom:10px;animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .password-card h2{font-family:var(--font-display);font-size:2rem;margin-bottom:5px;color:#fff}
+    .password-hint{color:rgba(255,255,255,0.7);font-size:.9rem;margin-bottom:15px}
+    .password-input-wrap{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:15px}
+    .password-input-wrap input{width:150px;padding:10px;font-size:1.6rem;text-align:center;border:2px solid var(--glass-border);border-radius:12px;background:rgba(255,255,255,0.1);color:#fff;letter-spacing:6px;outline:none;transition:border-color .3s}
     .password-input-wrap input:focus{border-color:var(--pink)}
-    .password-input-wrap input.shake{animation:shake .5s ease;border-color:#ff4444}
-    @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-10px)}80%{transform:translateX(10px)}}
-    .toggle-btn{background:none;border:none;color:rgba(255,255,255,0.6);font-size:1.3rem;cursor:pointer;padding:8px}
-    .error-msg{color:#ff4444;margin-top:15px;font-size:.95rem;opacity:0;transition:opacity .3s}
+    .password-input-wrap input.shake{animation:shake .4s ease;border-color:#ff4444}
+    @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+    .toggle-btn{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.2rem;cursor:pointer;padding:5px}
+    .error-msg{color:#ff4444;margin-top:10px;font-size:.9rem;opacity:0;transition:opacity .3s}
     .error-msg.show{opacity:1}
-    #floatingNav{position:fixed;top:15px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:12px;padding:10px 20px;border-radius:60px;max-width:95vw;backdrop-filter:blur(20px)}
-    .nav-brand{font-family:var(--font-display);font-size:1.2rem;color:var(--pink);white-space:nowrap}
-    .nav-links{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-    .nav-links::-webkit-scrollbar{display:none}
-    .nav-links a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:rgba(255,255,255,0.7);transition:all .3s;font-size:.9rem;flex-shrink:0}
+    #floatingNav{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:10px;padding:8px 15px;border-radius:60px;max-width:95vw;backdrop-filter:blur(20px)}
+    .nav-brand{font-family:var(--font-display);font-size:1.1rem;color:var(--pink);white-space:nowrap}
+    .nav-links{display:flex;gap:4px}
+    .nav-links a{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:rgba(255,255,255,0.8);transition:all .3s;font-size:.85rem}
     .nav-links a:hover,.nav-links a.active{background:var(--pink);color:#fff}
     #heartsContainer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:hidden}
     .float-heart{position:absolute;font-size:1.2rem;pointer-events:none;animation:heartFloat linear forwards;opacity:.7}
     @keyframes heartFloat{0%{transform:translateY(100vh) rotate(0deg) scale(.5);opacity:0}10%{opacity:.8}90%{opacity:.8}100%{transform:translateY(-10vh) rotate(360deg) scale(1.2);opacity:0}}
-    .hero-section{min-height:100vh;text-align:center;position:relative}
+    .hero-section{min-height:100vh;text-align:center}
     .hero-content{position:relative;z-index:3}
-    .hero-title{font-family:var(--font-display);font-size:3.5rem;line-height:1.2;margin-bottom:15px}
-    @media(max-width:600px){.hero-title{font-size:2.2rem}}
-    .name-glow{font-size:1.2em;background:linear-gradient(135deg,var(--pink),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(255,105,180,0.5))}
-    .hero-subtitle{font-size:1.1rem;margin-bottom:30px;min-height:1.6em;color:rgba(255,255,255,0.8)}
-    .hero-cake{font-size:6rem;margin-bottom:30px;animation:float 3s ease-in-out infinite}
-    .countdown-grid{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-    .countdown-card{width:130px;padding:25px 15px;text-align:center;transition:transform .3s}
-    .countdown-card:hover{transform:translateY(-5px)}
-    .count-num{display:block;font-size:3rem;font-weight:700;font-family:var(--font-display);color:var(--pink)}
-    .count-label{font-size:.85rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.6)}
-    @media(max-width:600px){.countdown-card{width:80px;padding:15px 10px}.count-num{font-size:2rem}}
-    .birthday-message{margin-top:40px;text-align:center}
-    .birthday-message h2{font-family:var(--font-display);font-size:2.5rem;animation:pulse 2s ease-in-out infinite}
-    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-    .letter-container{max-width:600px;width:90%;padding:40px;cursor:pointer;position:relative;min-height:300px;transition:all .5s}
-    .letter-container.opened{min-height:400px}
-    .letter-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;color:var(--pink);transition:all .6s;z-index:2}
-    .letter-container.opened .letter-seal{transform:translate(-50%,-50%) scale(3);opacity:0}
-    .letter-content{opacity:0;transition:opacity .8s ease .3s}
-    .letter-container.opened .letter-content{opacity:1}
-    .letter-date{text-align:right;font-size:.9rem;color:rgba(255,255,255,0.5);margin-bottom:20px}
-    .letter-greeting{font-family:var(--font-display);font-size:1.5rem;margin-bottom:15px;color:var(--pink)}
-    .letter-body{font-size:1rem;line-height:1.8;min-height:100px}
-    .letter-body .char{opacity:0;animation:typeChar .05s ease forwards}
-    @keyframes typeChar{to{opacity:1}}
-    .letter-closing{font-family:var(--font-display);font-size:1.3rem;margin-top:25px;color:var(--pink)}
-    .love-images{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:40px;max-width:700px;width:90%}
-    .love-images img{width:200px;height:200px;object-fit:cover;border-radius:20px;border:3px solid var(--pink);box-shadow:0 0 20px rgba(255,105,180,0.3);transition:all .5s;animation:imgFloat 3s ease-in-out infinite}
+    .hero-title{font-family:var(--font-display);font-size:3.5rem;line-height:1.2;margin-bottom:10px}
+    .name-glow{font-size:1.1em;background:linear-gradient(135deg,var(--pink),#fff,var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 15px rgba(255,105,180,0.6))}
+    .hero-subtitle{font-size:1.1rem;margin-bottom:20px;min-height:1.5em;color:#fff;font-weight:300}
+    .hero-cake{font-size:5rem;margin-bottom:20px;animation:float 3s ease-in-out infinite}
+    .countdown-grid{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:15px}
+    .countdown-card{width:110px;padding:15px 10px;text-align:center}
+    .count-num{display:block;font-size:2.5rem;font-weight:700;font-family:var(--font-display);color:var(--pink);text-shadow:0 0 5px rgba(255,105,180,0.3)}
+    .count-label{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.8)}
+    .letter-container{max-width:550px;width:90%;padding:30px;cursor:pointer;position:relative;min-height:250px;transition:all .5s}
+    .letter-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.5rem;color:var(--pink);z-index:2}
+    .letter-container.opened .letter-seal{transform:translate(-50%,-50%) scale(3);opacity:0;pointer-events:none}
+    .letter-content{opacity:0;display:none;transition:opacity .5s ease}
+    .letter-container.opened .letter-content{opacity:1;display:block}
+    .letter-date{text-align:right;font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:15px}
+    .letter-greeting{font-family:var(--font-display);font-size:1.6rem;margin-bottom:10px;color:var(--pink)}
+    .letter-body{font-size:0.95rem;line-height:1.7;color:#fff}
+    .letter-closing{font-family:var(--font-display);font-size:1.4rem;margin-top:20px;color:var(--pink)}
+    .love-images{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-top:20px;max-width:650px;width:90%}
+    .love-images img{width:180px;height:180px;object-fit:cover;border-radius:15px;border:3px solid var(--pink);box-shadow:0 0 15px rgba(255,105,180,0.4);animation:imgFloat 3s ease-in-out infinite}
     .love-images img:nth-child(2){animation-delay:.5s}
     .love-images img:nth-child(3){animation-delay:1s}
-    @keyframes imgFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(2deg)}}
-    .love-images img:hover{transform:scale(1.1);box-shadow:0 0 30px rgba(255,105,180,0.6)}
-    @media(max-width:600px){.love-images img{width:140px;height:140px}}
-    .reasons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:800px;width:90%}
-    .reason-card{padding:30px 20px;text-align:center;transition:all .4s;opacity:0;transform:translateY(20px)}
+    @keyframes imgFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+    .love-images img:hover{transform:scale(1.05);box-shadow:0 0 25px var(--pink)}
+    .reasons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;max-width:800px;width:90%}
+    .reason-card{padding:20px;text-align:center;transition:all .3s ease;opacity:0;transform:translateY(20px)}
     .reason-card.visible{opacity:1;transform:translateY(0)}
-    .reason-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--pink)}
-    .reason-icon{font-size:2.5rem;margin-bottom:10px}
-    .reason-card h4{font-family:var(--font-display);font-size:1.3rem;color:var(--pink);margin-bottom:8px}
-    .reason-card p{font-size:.9rem;color:rgba(255,255,255,0.7);line-height:1.6}
-    .wishes-carousel{max-width:600px;width:90%;padding:40px 30px;text-align:center;min-height:200px}
-    .wish-text{font-family:var(--font-display);font-size:1.5rem;line-height:1.8;min-height:100px;display:flex;align-items:center;justify-content:center}
-    .wish-controls{display:flex;justify-content:center;align-items:center;gap:15px;margin-top:20px}
-    .wish-controls button{background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.2rem;cursor:pointer;padding:8px 12px;border-radius:50%;transition:all .3s}
-    .wish-controls button:hover{color:var(--pink);background:rgba(255,255,255,0.05)}
-    .wish-dots{display:flex;gap:8px}
-    .wish-dots .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all .3s;cursor:pointer}
+    .reason-icon{font-size:2.2rem;margin-bottom:5px}
+    .reason-card h4{font-family:var(--font-display);font-size:1.5rem;color:var(--pink);margin-bottom:5px}
+    .reason-card p{font-size:.9rem;color:#ffffff;line-height:1.6;font-weight:400}
+    .wishes-carousel{max-width:550px;width:90%;padding:30px 20px;text-align:center}
+    .wish-text{font-family:var(--font-display);font-size:1.6rem;line-height:1.6;min-height:90px;color:#fff;display:flex;align-items:center;justify-content:center}
+    .wish-controls{display:flex;justify-content:center;align-items:center;gap:15px;margin-top:15px}
+    .wish-controls button{background:none;border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:5px 10px;border-radius:50%}
+    .wish-controls button:hover{color:var(--pink);background:rgba(255,255,255,0.1)}
+    .wish-dots{display:flex;gap:6px}
+    .wish-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer}
     .wish-dots .dot.active{background:var(--pink)}
-    .magic-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(10px);animation:fadeIn .5s ease}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .magic-content{text-align:center;padding:40px;max-width:500px;width:90%}
-    .magic-stars{font-size:2.5rem;animation:spin 3s linear infinite;margin-bottom:20px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .magic-content h2{font-family:var(--font-display);font-size:2rem;margin-bottom:15px;color:var(--pink)}
-    .magic-content p{font-size:1.1rem;margin-bottom:25px;color:rgba(255,255,255,0.8)}
-    .final-section{min-height:100vh;text-align:center;background:radial-gradient(ellipse at center,#1a0a2e,#0d0d1a)}
-    .final-title{font-family:var(--font-display);font-size:3.5rem;margin-bottom:20px;animation:pulse 2s ease-in-out infinite}
-    @media(max-width:600px){.final-title{font-size:2rem}}
-    .final-subtitle{font-size:1.2rem;margin-bottom:30px;color:rgba(255,255,255,0.8)}
-    .final-hearts{font-size:2.5rem;letter-spacing:10px;animation:float 2s ease-in-out infinite;margin-bottom:30px}
-    ::-webkit-scrollbar{width:6px}
-    ::-webkit-scrollbar-track{background:#1a1a2e}
+    .magic-overlay{position:fixed;inset:0;z-index:300;background:rgba(5,5,10,0.95);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+    .magic-content{text-align:center;padding:30px;max-width:450px;width:90%}
+    .magic-stars{font-size:2rem;margin-bottom:15px}
+    .magic-content h2{font-family:var(--font-display);font-size:2.2rem;margin-bottom:10px;color:var(--pink)}
+    .magic-content p{font-size:1rem;margin-bottom:20px;color:#fff;line-height:1.6}
+    .final-section{min-height:100vh;text-align:center;background:#06060c}
+    .final-title{font-family:var(--font-display);font-size:3.5rem;margin-bottom:15px}
+    .final-subtitle{font-size:1.1rem;margin-bottom:20px;color:rgba(255,255,255,0.9)}
+    .final-hearts{font-size:2rem;letter-spacing:6px;margin-bottom:20px}
+    @media(max-width:600px){
+      .section{padding:35px 15px;min-height:auto}
+      .hero-section,.final-section{min-height:100vh}
+      .section-title{font-size:2rem;margin-bottom:15px}
+      .countdown-card{width:75px;padding:10px 5px}
+      .count-num{font-size:1.8rem}
+      .love-images img{width:130px;height:130px}
+      .letter-container{padding:20px}
+    }
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:#06060c}
     ::-webkit-scrollbar-thumb{background:var(--pink);border-radius:10px}
   </style>
 </head>
@@ -228,38 +219,38 @@
   <button id="musicBtn" class="btn-primary" style="position:fixed;bottom:20px;right:20px;z-index:100;padding:10px 18px;font-size:0.9rem">🎵 Play</button>
 
   <!-- REASONS I LOVE YOU -->
-  <section class="loader-text" class="section">
+  <section id="reasons" class="section">
     <h2 class="section-title glow-text">💖 Reasons I Love You</h2>
     <div class="reasons-grid" id="reasonsGrid">
-      <div class="reason-card glass" class="loader-text">
+      <div class="reason-card glass">
         <div class="reason-icon">😊</div>
-        <h4 class="loader-text">Your Smile</h4>
-        <p>Your smile is the most beautiful thing I have ever seen. It lights up my entire world and makes every day better. When you smile, my heart feels at peace and I forget all my worries. Your smile is my sunshine.</p>
-      </div>
-      <div class="reason-card glass" >
-        <div class="reason-icon">👀</div>
-        <h4 class="loader-text">Your Eyes</h4>
-        <p class="loader-text">Your eyes are like stars that guide me through the darkest nights. I get lost in them every time I look at you. There is so much depth, love, and magic in your eyes. They speak to me without saying a single word.</p>
+        <h4>Your Smile</h4>
+        <p>Your smile is the most beautiful thing I have ever seen. It lights up my entire world and makes every day better. When you smile, my heart feels at peace and I forget all my worries.</p>
       </div>
       <div class="reason-card glass">
-        <div class="reason-icon" class="loader-text">🌸</div>
-        <h4 class="loader-text">Your Nature</h4>
-        <p class="loader-text">You are the kindest, most gentle soul I have ever known. Your heart is pure and full of love for everyone around you. You care so deeply and selflessly. Your nature inspires me to be a better person every single day.</p>
+        <div class="reason-icon">👀</div>
+        <h4>Your Eyes</h4>
+        <p>Your eyes are like stars that guide me through the darkest nights. I get lost in them every time I look at you. There is so much depth, love, and magic in your eyes.</p>
+      </div>
+      <div class="reason-card glass">
+        <div class="reason-icon">🌸</div>
+        <h4>Your Nature</h4>
+        <p>You are the kindest, most gentle soul I have ever known. Your heart is pure and full of love for everyone around you. Your nature inspires me to be a better person.</p>
       </div>
       <div class="reason-card glass">
         <div class="reason-icon">🤗</div>
-        <h4 class="loader-text">Your Care</h4>
-        <p class="loader-text">You love selflessly and deeply. You always put others before yourself and make sure everyone around you is happy. Your care and affection make me feel safe and loved. I have never felt as cherished as I do with you.</p>
+        <h4>Your Care</h4>
+        <p>You love selflessly and deeply. You always put others before yourself and make sure everyone around you is happy. Your care and affection make me feel safe.</p>
       </div>
       <div class="reason-card glass">
         <div class="reason-icon">😂</div>
-        <h4 class="loader-text">Your Laughter</h4>
-        <p class="loader-text">Your laughter is the most beautiful melody my ears have ever heard. It fills my heart with joy and makes everything feel right. When you laugh, the whole world seems brighter. I could listen to your laugh forever.</p>
+        <h4>Your Laughter</h4>
+        <p>Your laughter is the most beautiful melody my ears have ever heard. It fills my heart with joy and makes everything feel right. I could listen to your laugh forever.</p>
       </div>
       <div class="reason-card glass">
         <div class="reason-icon">💪</div>
-        <h4 class="loader-text">Your Strength</h4>
-        <p class="loader-text">You are the strongest person I know. No matter what life throws at you, you face it with courage and grace. You inspire me to never give up and to always keep going. Your strength is truly remarkable and I admire you so much.</p>
+        <h4>Your Strength</h4>
+        <p>You are the strongest person I know. No matter what life throws at you, you face it with courage and grace. Your strength is truly remarkable and I admire you so much.</p>
       </div>
     </div>
   </section>
@@ -267,7 +258,7 @@
   <!-- BIRTHDAY WISHES -->
   <section id="wishes" class="section">
     <h2 class="section-title glow-text">✨ Birthday Wishes</h2>
-    <div class="wishes-carousel glass" class="loader-text">
+    <div class="wishes-carousel glass">
       <div class="wish-text" id="wishText"></div>
       <div class="wish-controls">
         <button class="wish-prev"><i class="fas fa-chevron-left"></i></button>
@@ -305,7 +296,6 @@
 <script>
 (function(){
   const $=s=>document.querySelector(s);
-  const $$=s=>document.querySelectorAll(s);
   const CONFIG={
     password:'1109',
     birthdayDate:new Date('September 11, 2026 00:00:00'),
@@ -347,15 +337,28 @@
 
   // LETTER
   let lo=false;
-  window.openLetter=function(){if(lo)return;lo=true;document.querySelector('.letter-container').classList.add('opened');const b=$('#letterBody');b.textContent='';const t=CONFIG.loveLetterText;let i=0;function tl(){if(i<t.length){const s=document.createElement('span');s.className='char';s.textContent=t.charAt(i);b.appendChild(s);i++;setTimeout(tl,15+Math.random()*10);}}setTimeout(tl,500);};
+  window.openLetter=function(){if(lo)return;lo=true;document.querySelector('.letter-container').classList.add('opened');const b=$('#letterBody');b.textContent='';const t=CONFIG.loveLetterText;let i=0;function tl(){if(i<t.length){b.innerHTML+=t.charAt(i);i++;setTimeout(tl,20);}else{b.style.opacity='1';}}setTimeout(tl,300);};
 
   // WISHES
-  function wishes(){const t=$('#wishText'),d=$('#wishDots'),w=CONFIG.wishes;let cur=0;w.forEach((_,i)=>{const dt=document.createElement('div');dt.className='dot'+(i===0?' active':'');dt.addEventListener('click',()=>go(i));d.appendChild(dt);});function go(i){cur=i;t.textContent='';const txt=w[cur];let ci=0;function tw(){if(ci<txt.length){t.textContent+=txt.charAt(ci);ci++;setTimeout(tw,12+Math.random()*10);}}tw();d.querySelectorAll('.dot').forEach((dt,j)=>dt.classList.toggle('active',j===cur));}
+  function wishes(){const t=$('#wishText'),d=$('#wishDots'),w=CONFIG.wishes;let cur=0;w.forEach((_,i)=>{const dt=document.createElement('div');dt.className='dot'+(i===0?' active':'');dt.addEventListener('click',()=>go(i));d.appendChild(dt);});function go(i){cur=i;t.textContent=w[cur];d.querySelectorAll('.dot').forEach((dt,j)=>dt.classList.toggle('active',j===cur));}
     document.querySelector('.wish-prev').addEventListener('click',()=>go(cur===0?w.length-1:cur-1));
     document.querySelector('.wish-next').addEventListener('click',()=>go(cur===w.length-1?0:cur+1));go(0);}
 
-  // REASONS
-  function reasons(){new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.2}).observe(document.querySelectorAll('.reason-card'))}
+  // REASONS (FIXED INTERSECTION OBSERVER BUG)
+  function reasons(){
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },{threshold:0.1});
+    
+    // NodeList ko check kar ke har card par individually observer lagaya
+    document.querySelectorAll('.reason-card').forEach(card => {
+      observer.observe(card);
+    });
+  }
 
   // HEARTS
   function hearts(){const c=$('#heartsContainer');setInterval(()=>{const el=document.createElement('div');el.className='float-heart';el.textContent=['❤️','💖','💗','💕'][Math.floor(Math.random()*4)];el.style.left=Math.random()*100+'%';el.style.fontSize=(0.8+Math.random()*1.5)+'rem';el.style.animationDuration=(6+Math.random()*8)+'s';c.appendChild(el);setTimeout(()=>el.remove(),14000);},500);}
