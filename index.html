@@ -57,8 +57,6 @@
     .nav-links::-webkit-scrollbar{display:none}
     .nav-links a{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:rgba(255,255,255,0.7);transition:all .3s;font-size:.9rem;flex-shrink:0}
     .nav-links a:hover,.nav-links a.active{background:var(--pink);color:#fff}
-    .nav-icon-btn{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;cursor:pointer;padding:6px 10px;border-radius:50%;transition:all .3s}
-    .nav-icon-btn:hover{color:var(--pink)}
     #heartsContainer{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:hidden}
     .float-heart{position:absolute;font-size:1.2rem;pointer-events:none;animation:heartFloat linear forwards;opacity:.7}
     @keyframes heartFloat{0%{transform:translateY(100vh) rotate(0deg) scale(.5);opacity:0}10%{opacity:.8}90%{opacity:.8}100%{transform:translateY(-10vh) rotate(360deg) scale(1.2);opacity:0}}
@@ -97,23 +95,13 @@
     @keyframes imgFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(2deg)}}
     .love-images img:hover{transform:scale(1.1);box-shadow:0 0 30px rgba(255,105,180,0.6)}
     @media(max-width:600px){.love-images img{width:140px;height:140px}}
-    .timeline{max-width:700px;width:90%;position:relative}
-    .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--pink),var(--purple));transform:translateX(-50%)}
-    .timeline-item{display:flex;align-items:center;gap:30px;margin-bottom:40px;padding:25px;position:relative;width:calc(50% - 20px);opacity:0;transform:translateY(30px);transition:all .6s ease}
-    .timeline-item.visible{opacity:1;transform:translateY(0)}
-    .timeline-item.left{margin-right:auto}
-    .timeline-item.right{margin-left:auto;flex-direction:row-reverse}
-    @media(max-width:650px){.timeline::before{left:20px}.timeline-item,.timeline-item.right{width:calc(100% - 40px);margin-left:40px;flex-direction:row}}
-    .timeline-icon{font-size:2rem;flex-shrink:0}
-    .timeline-content h3{font-family:var(--font-display);font-size:1.3rem;color:var(--pink);margin-bottom:5px}
-    .timeline-content p{font-size:.9rem;color:rgba(255,255,255,0.7)}
     .reasons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:800px;width:90%}
     .reason-card{padding:30px 20px;text-align:center;transition:all .4s;opacity:0;transform:translateY(20px)}
     .reason-card.visible{opacity:1;transform:translateY(0)}
     .reason-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--pink)}
     .reason-icon{font-size:2.5rem;margin-bottom:10px}
     .reason-card h4{font-family:var(--font-display);font-size:1.3rem;color:var(--pink);margin-bottom:8px}
-    .reason-card p{font-size:.9rem;color:rgba(255,255,255,0.7)}
+    .reason-card p{font-size:.9rem;color:rgba(255,255,255,0.7);line-height:1.6}
     .wishes-carousel{max-width:600px;width:90%;padding:40px 30px;text-align:center;min-height:200px}
     .wish-text{font-family:var(--font-display);font-size:1.5rem;line-height:1.8;min-height:100px;display:flex;align-items:center;justify-content:center}
     .wish-controls{display:flex;justify-content:center;align-items:center;gap:15px;margin-top:20px}
@@ -127,7 +115,7 @@
     .magic-content{text-align:center;padding:40px;max-width:500px;width:90%}
     .magic-stars{font-size:2.5rem;animation:spin 3s linear infinite;margin-bottom:20px}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .magic-content h2{font-family:var(--font-display);font-size:2rem;margin-bottom:15px}
+    .magic-content h2{font-family:var(--font-display);font-size:2rem;margin-bottom:15px;color:var(--pink)}
     .magic-content p{font-size:1.1rem;margin-bottom:25px;color:rgba(255,255,255,0.8)}
     .final-section{min-height:100vh;text-align:center;background:radial-gradient(ellipse at center,#1a0a2e,#0d0d1a)}
     .final-title{font-family:var(--font-display);font-size:3.5rem;margin-bottom:20px;animation:pulse 2s ease-in-out infinite}
@@ -181,7 +169,6 @@
       <a href="#countdown"><i class="fas fa-clock"></i></a>
       <a href="#loveLetter"><i class="fas fa-envelope"></i></a>
       <a href="#loveImages"><i class="fas fa-images"></i></a>
-      <a href="#timeline"><i class="fas fa-timeline"></i></a>
       <a href="#reasons"><i class="fas fa-heart"></i></a>
       <a href="#wishes"><i class="fas fa-star"></i></a>
       <a href="#surpriseBtn"><i class="fas fa-magic"></i></a>
@@ -240,31 +227,44 @@
   </audio>
   <button id="musicBtn" class="btn-primary" style="position:fixed;bottom:20px;right:20px;z-index:100;padding:10px 18px;font-size:0.9rem">🎵 Play</button>
 
-  <!-- TIMELINE -->
-  <section id="timeline" class="section">
-    <h2 class="section-title glow-text">⏳ Our Journey</h2>
-    <div class="timeline">
-      <div class="timeline-item glass left"><div class="timeline-icon">❤️</div><div class="timeline-content"><h3>First Meet</h3><p>The moment our eyes met, everything changed.</p></div></div>
-      <div class="timeline-item glass right"><div class="timeline-icon">💬</div><div class="timeline-content"><h3>First Chat</h3><p>Words flowed like magic from the very first message.</p></div></div>
-      <div class="timeline-item glass left"><div class="timeline-icon">📷</div><div class="timeline-content"><h3>Best Picture</h3><p>A moment frozen in time — perfection.</p></div></div>
-      <div class="timeline-item glass right"><div class="timeline-icon">🎂</div><div class="timeline-content"><h3>Birthday</h3><p>The most special day — celebrating YOU!</p></div></div>
-    </div>
-  </section>
-
-  <!-- REASONS -->
+  <!-- REASONS I LOVE YOU -->
   <section id="reasons" class="section">
     <h2 class="section-title glow-text">💖 Reasons I Love You</h2>
     <div class="reasons-grid" id="reasonsGrid">
-      <div class="reason-card glass"><div class="reason-icon">😊</div><h4>Your Smile</h4><p>It lights up my entire world.</p></div>
-      <div class="reason-card glass"><div class="reason-icon">👀</div><h4>Your Eyes</h4><p>I get lost in them every time.</p></div>
-      <div class="reason-card glass"><div class="reason-icon">🌸</div><h4>Your Nature</h4><p>Kind, gentle, and absolutely beautiful.</p></div>
-      <div class="reason-card glass"><div class="reason-icon">🤗</div><h4>Your Care</h4><p>You love selflessly and deeply.</p></div>
-      <div class="reason-card glass"><div class="reason-icon">😂</div><h4>Your Laughter</h4><p>The most beautiful sound.</p></div>
-      <div class="reason-card glass"><div class="reason-icon">💪</div><h4>Your Strength</h4><p>You inspire me every day.</p></div>
+      <div class="reason-card glass">
+        <div class="reason-icon">😊</div>
+        <h4>Your Smile</h4>
+        <p>Your smile is the most beautiful thing I have ever seen. It lights up my entire world and makes every day better. When you smile, my heart feels at peace and I forget all my worries. Your smile is my sunshine.</p>
+      </div>
+      <div class="reason-card glass">
+        <div class="reason-icon">👀</div>
+        <h4>Your Eyes</h4>
+        <p>Your eyes are like stars that guide me through the darkest nights. I get lost in them every time I look at you. There is so much depth, love, and magic in your eyes. They speak to me without saying a single word.</p>
+      </div>
+      <div class="reason-card glass">
+        <div class="reason-icon">🌸</div>
+        <h4>Your Nature</h4>
+        <p>You are the kindest, most gentle soul I have ever known. Your heart is pure and full of love for everyone around you. You care so deeply and selflessly. Your nature inspires me to be a better person every single day.</p>
+      </div>
+      <div class="reason-card glass">
+        <div class="reason-icon">🤗</div>
+        <h4>Your Care</h4>
+        <p>You love selflessly and deeply. You always put others before yourself and make sure everyone around you is happy. Your care and affection make me feel safe and loved. I have never felt as cherished as I do with you.</p>
+      </div>
+      <div class="reason-card glass">
+        <div class="reason-icon">😂</div>
+        <h4>Your Laughter</h4>
+        <p>Your laughter is the most beautiful melody my ears have ever heard. It fills my heart with joy and makes everything feel right. When you laugh, the whole world seems brighter. I could listen to your laugh forever.</p>
+      </div>
+      <div class="reason-card glass">
+        <div class="reason-icon">💪</div>
+        <h4>Your Strength</h4>
+        <p>You are the strongest person I know. No matter what life throws at you, you face it with courage and grace. You inspire me to never give up and to always keep going. Your strength is truly remarkable and I admire you so much.</p>
+      </div>
     </div>
   </section>
 
-  <!-- WISHES -->
+  <!-- BIRTHDAY WISHES -->
   <section id="wishes" class="section">
     <h2 class="section-title glow-text">✨ Birthday Wishes</h2>
     <div class="wishes-carousel glass">
@@ -284,8 +284,8 @@
     <div id="magicOverlay" class="magic-overlay hidden">
       <div class="magic-content">
         <div class="magic-stars">⭐🌟✨💫⭐🌟✨</div>
-        <h2 class="glow-text" style="color:var(--pink)">Happy Birthday Amna Hamid ❤️</h2>
-        <p>You are the most beautiful soul I know. You deserve all the love in the world.</p>
+        <h2 class="glow-text">Happy Birthday Amna Hamid ❤️</h2>
+        <p>You are the most beautiful soul I know. You deserve all the love and happiness in the world. Never forget how special you are. I love you more than words can ever express. Happy Birthday, my love! 💕</p>
         <button class="btn-primary" onclick="closeMagicSurprise()">Close ♥</button>
       </div>
     </div>
@@ -309,14 +309,14 @@
   const CONFIG={
     password:'1109',
     birthdayDate:new Date('September 11, 2026 00:00:00'),
-    loveLetterText:"You are the most beautiful part of my life. Every moment with you feels like a dream I never want to wake up from. Your smile lights up my darkest days, your laughter is the sweetest melody, and your love is the greatest gift I have ever received. Happy Birthday, my love. ❤️",
+    loveLetterText:"You are the most beautiful part of my life. Every moment with you feels like a dream I never want to wake up from. Your smile lights up my darkest days, your laughter is the sweetest melody, and your love is the greatest gift I have ever received. On this special day, I want you to know that you are cherished, adored, and deeply loved. Happy Birthday, my love. ❤️",
     wishes:[
-      "May your life be filled with endless joy, boundless love, and infinite blessings. Happy Birthday, Amna! ❤️",
-      "You deserve all the happiness in the world. Shine bright, beautiful! ✨",
-      "Another year older, another year more amazing. The world is lucky to have you! 🎂",
-      "May all your dreams come true. Happy Birthday! 💫",
-      "You are one of a kind. Celebrate you today! 🎉",
-      "Sending you all the love on your special day! 🌹"
+      "Meri pyari Amna, aapko meri taraf se bohat bohat mubarak ho! Aap ki zindagi khushiyon se bhari ho, har din nayi roshni ho, aur aap hamesha muskurati rahein. I love you! ❤️",
+      "Aap is duniya ki sabse khoobsurat rooh hain. Aap ke chehre ki muskaan meri duniya hai. Allah aap ko hamesha khush aur salamat rakhe. Happy Birthday meri jaan! 💫",
+      "Meri zindagi mein aane ke baad sab kuch badal gaya hai. Aap ne mujhe sachchi mohabbat ka matlab sikhaya hai. Aap ke bina ek pal bhi adhoora hai. Happy Birthday my love! 💖",
+      "Aap meri zindagi ki sabse khoobsurat kahani ho. Har pal aap ke saath guzarna ek sapne jaisa hai. Allah aap ko hamesha khush rakhe. I love you more than anything! 🌹",
+      "Meri jaan, aap ke liye meri dua hai ke aap ki zindagi mein kabhi gham na aaye. Aap hamesha khush rahein, hamesha muskurati rahein. You are my everything! 🎂",
+      "Aap ko dekh kar hi mera din ban jaata hai. Aap ki ek muskaan meri poori duniya badal deti hai. Aap se mohabbat karna meri zindagi ki sabse khoobsurat cheez hai. Happy Birthday! 💕"
     ],
     sakuraColors:['#ffb7c5','#ffc0cb','#ffd1dc','#ffe4e1','#fff0f5']
   };
@@ -329,16 +329,15 @@
   let pCtx,pW,pH,parts=[];
   function initP(){const c=$('#particleBg');if(!c)return;pCtx=c.getContext('2d');resizeP();parts=[];for(let i=0;i<60;i++)parts.push({x:Math.random()*pW,y:Math.random()*pH,r:Math.random()*3+1,dx:(Math.random()-0.5)*0.6,dy:(Math.random()-0.5)*0.6,alpha:Math.random()*0.5+0.2,color:CONFIG.sakuraColors[Math.floor(Math.random()*CONFIG.sakuraColors.length)]});animP();}
   function resizeP(){const c=$('#particleBg');if(!c)return;c.width=window.innerWidth;c.height=window.innerHeight;pW=c.width;pH=c.height;}
-  function animP(){pCtx.clearRect(0,0,pW,pH);for(const p of parts){pCtx.beginPath();pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);pCtx.fillStyle=p.color;pCtx.globalAlpha=p.alpha;pCtx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>pW)p.dx*=-1;if(p.y<0||p.y>pH)p.dy*=-1;}requestAnimationFrame(animP);}
+  function animP(){if(!pCtx)return;pCtx.clearRect(0,0,pW,pH);for(const p of parts){pCtx.beginPath();pCtx.arc(p.x,p.y,p.r,0,Math.PI*2);pCtx.fillStyle=p.color;pCtx.globalAlpha=p.alpha;pCtx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>pW)p.dx*=-1;if(p.y<0||p.y>pH)p.dy*=-1;}requestAnimationFrame(animP);}
 
   // PASSWORD
-  let pwdS=false;
-  $('#togglePassword').addEventListener('click',()=>{pwdS=!pwdS;$('#passwordInput').type=pwdS?'text':'password';$('#togglePassword').innerHTML=pwdS?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>';});
+  $('#togglePassword').addEventListener('click',()=>{const i=$('#passwordInput');i.type=i.type==='password'?'text':'password';$('#togglePassword').innerHTML=i.type==='text'?'<i class="fas fa-eye-slash"></i>':'<i class="fas fa-eye"></i>';});
   function checkPwd(){const v=$('#passwordInput').value.trim();if(v===CONFIG.password){$('#passwordError').classList.remove('show');document.querySelector('.password-card').classList.add('unlocked');setTimeout(()=>{$('#passwordScreen').style.display='none';$('#mainSite').classList.remove('hidden');initMain();},600);}else{$('#passwordError').classList.add('show');$('#passwordInput').classList.add('shake');setTimeout(()=>$('#passwordInput').classList.remove('shake'),500);$('#passwordInput').value='';$('#passwordInput').focus();}}
   $('#unlockBtn').addEventListener('click',checkPwd);$('#passwordInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPwd();});
 
   // MAIN
-  function initMain(){typing();countdown();letter();wishes();timeline();reasons();hearts();musicBtn();}
+  function initMain(){typing();countdown();letter();wishes();reasons();hearts();musicBtn();}
 
   // TYPING
   function typing(){const t=$('#typingText');const txt="The world is brighter because you're in it ❤️";t.textContent='';let i=0;function tp(){if(i<txt.length){t.textContent+=txt.charAt(i);i++;setTimeout(tp,50+Math.random()*40);}}setTimeout(tp,500);}
@@ -354,9 +353,6 @@
   function wishes(){const t=$('#wishText'),d=$('#wishDots'),w=CONFIG.wishes;let cur=0;w.forEach((_,i)=>{const dt=document.createElement('div');dt.className='dot'+(i===0?' active':'');dt.addEventListener('click',()=>go(i));d.appendChild(dt);});function go(i){cur=i;t.textContent='';const txt=w[cur];let ci=0;function tw(){if(ci<txt.length){t.textContent+=txt.charAt(ci);ci++;setTimeout(tw,12+Math.random()*10);}}tw();d.querySelectorAll('.dot').forEach((dt,j)=>dt.classList.toggle('active',j===cur));}
     document.querySelector('.wish-prev').addEventListener('click',()=>go(cur===0?w.length-1:cur-1));
     document.querySelector('.wish-next').addEventListener('click',()=>go(cur===w.length-1?0:cur+1));go(0);}
-
-  // TIMELINE
-  function timeline(){new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.2}).observe(document.querySelectorAll('.timeline-item'))}
 
   // REASONS
   function reasons(){new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.2}).observe(document.querySelectorAll('.reason-card'))}
