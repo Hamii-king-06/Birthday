@@ -35,6 +35,7 @@
     .bg-countdown { background: linear-gradient(135deg, #e3e8ff, #f1e6ff, #eadeff); background-size: 300% 300%; animation: aurora 9s ease infinite; }
     .bg-letter { background: linear-gradient(120deg, #fff9e6, #ffebe3, #ffe3e9); background-size: 300% 300%; animation: aurora 10s ease infinite; }
     .bg-fun { background: linear-gradient(225deg, #e6fff4, #e0f4ff, #f0e6ff); background-size: 300% 300%; animation: aurora 7s ease infinite; }
+    .bg-gifs { background: linear-gradient(135deg, #fff0f5, #ffe6eb, #f5e6ff); background-size: 300% 300%; animation: aurora 9s ease infinite; }
     .bg-images { background: linear-gradient(135deg, #ffeef0, #fff5f6, #f3e6f7); background-size: 300% 300%; animation: aurora 11s ease infinite; }
     .bg-reasons { background: linear-gradient(45deg, #e6faff, #e6eeff, #ebe6ff); background-size: 300% 300%; animation: aurora 9s ease infinite; }
     .bg-wishes { background: linear-gradient(135deg, #ffebeb, #ffeefc, #e6f0ff); background-size: 300% 300%; animation: aurora 8s ease infinite; }
@@ -155,28 +156,9 @@
     .cake-hint-bubble { background: #ff4e50; color: #fff; padding: 6px 15px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; position: absolute; top: -50px; left: 50%; transform: translateX(-50%); white-space: nowrap; box-shadow: 0 6px 18px rgba(255,78,80,0.25); animation: bounceStick 2s infinite; }
     @keyframes bounceStick { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
 
-    .smoke-particle {
-      position: absolute;
-      font-size: 1.5rem;
-      opacity: 0.8;
-      pointer-events: none;
-      transition: transform 1.2s ease-out, opacity 1.2s ease-out;
-      z-index: 10;
-    }
-
-    .balloon-pop {
-      position: absolute;
-      font-size: 2.5rem;
-      bottom: -50px;
-      pointer-events: none;
-      animation: floatUpAndAway 4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      z-index: 100;
-    }
-
-    @keyframes floatUpAndAway {
-      0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-100vh) scale(1.2) rotate(30deg); opacity: 0; }
-    }
+    .smoke-particle { position: absolute; font-size: 1.5rem; opacity: 0.8; pointer-events: none; transition: transform 1.2s ease-out, opacity 1.2s ease-out; z-index: 10; }
+    .balloon-pop { position: absolute; font-size: 2.5rem; bottom: -50px; pointer-events: none; animation: floatUpAndAway 4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; z-index: 100; }
+    @keyframes floatUpAndAway { 0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.2) rotate(30deg); opacity: 0; } }
 
     /* COUNTDOWN DISPATCH */
     .cd-container { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; margin-top:20px; }
@@ -200,6 +182,13 @@
     .machine-output-text { font-size: 1.2rem; font-weight: 600; line-height: 1.8; }
     .machine-output-urdu { font-family: var(--font-urdu); font-size: 1.65rem; line-height: 2.8; direction: rtl; text-align: center; font-weight: 700; }
 
+    /* CUTE GIF WALL MODULE */
+    .gif-container { display:flex; gap:25px; justify-content:center; flex-wrap:wrap; max-width:850px; width:100%; margin-top:20px; }
+    .gif-card { background: rgba(255, 255, 255, 0.9); padding: 15px; border-radius: 25px; box-shadow: 0 15px 35px rgba(255,78,80,0.15); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 3px dashed #ffb8b8; }
+    .gif-card:hover { transform: translateY(-10px) rotate(-3deg) scale(1.05); border-color: #ff4e50; box-shadow: 0 25px 45px rgba(255,78,80,0.25); }
+    .gif-card img { width: 200px; height: 200px; object-fit: cover; border-radius: 15px; pointer-events: none; }
+    .gif-caption { text-align: center; font-weight: 700; color: var(--text-secondary); margin-top: 10px; font-size: 1rem; }
+
     /* PHOTO GALLERY */
     .img-flex { display:flex; gap:25px; justify-content:center; flex-wrap:wrap; width:100%; max-width:820px; }
     .img-frame { width:230px; height:230px; object-fit:cover; border-radius:28px; border: 6px solid #fff; box-shadow:0 12px 30px rgba(0,0,0,0.06); transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -211,7 +200,7 @@
     .r-card h4 { font-family:var(--font-display); font-size:2.2rem; margin-bottom:12px; color: #ff4e50; }
     .r-card p { font-size: 0.98rem; line-height: 1.75; font-weight: 500; color: var(--text-secondary); }
 
-    /* SUSPENSE DYNAMIC METER (MANDATORY GATEWAY PRE-LOAD) */
+    /* SUSPENSE DYNAMIC METER */
     .meter-track { width: 100%; height: 26px; background: rgba(0,0,0,0.05); border-radius: 20px; overflow: hidden; margin: 25px 0; border: 2px solid #fff; position: relative; }
     .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff7675, #ff4e50, #d63031); transition: width 0.15s cubic-bezier(0.1, 0.8, 0.3, 1); border-radius: 20px; }
     .meter-percentage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: var(--text-main); mix-blend-mode: multiply; }
@@ -237,7 +226,7 @@
       .section-title { font-size: 2.8rem; }
       .cd-box { width: 80px; padding: 14px 6px; }
       .cd-val { font-size: 2.2rem; }
-      .img-frame { width: 150px; height: 150px; }
+      .img-frame, .gif-card img { width: 150px; height: 150px; }
       #floatingNav { padding: 10px 14px; }
       .nav-brand { display:none; }
       .video-viewport { height: 240px; }
@@ -246,6 +235,7 @@
 </head>
 <body>
 
+<!-- AUDIO TRACK (Replace src with your local music if needed) -->
 <audio id="loveEngineRoom" loop preload="auto">
   <source src="assets/music/birthday.mp3" type="audio/mpeg" />
 </audio>
@@ -260,7 +250,7 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 1: PORTAL LOGIN STICKER DECK -->
+<!-- SUSPENSE STAGE 1: PORTAL LOGIN -->
 <div id="passwordScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px; position:relative;">
@@ -276,7 +266,7 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 2: RUNAWAY CHOICE ENGINE -->
+<!-- SUSPENSE STAGE 2: RUNAWAY NO OPTION -->
 <div id="readyScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -291,7 +281,7 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 3: COMPLIANCE SIGNATURE AGREEMENT -->
+<!-- SUSPENSE STAGE 3: COMPLIANCE AGREEMENT -->
 <div id="agreementScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -317,7 +307,7 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 4: THE SECRET ROMANTIC RIDDLE -->
+<!-- SUSPENSE STAGE 4: RIDDLE -->
 <div id="riddleScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -334,7 +324,7 @@
   </div>
 </div>
 
-<!-- NEW SUSPENSE STAGE 4.5: THE ADVANCED LOVE QUIZ GATEKEEPER -->
+<!-- SUSPENSE STAGE 4.5: LOVE TESTING QUIZ -->
 <div id="loveQuizScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -343,7 +333,6 @@
     <h2 id="quizTitle" style="font-size:1.5rem; margin-bottom:10px; font-weight:700;">💘 Love Testing Quiz</h2>
     <p id="quizInstructions" style="font-size:0.95rem; font-weight:600; color:var(--text-secondary); margin-bottom:20px; line-height:1.5;">Answer accurately to verify your clearance status! ✨</p>
     
-    <!-- QUESTION 1 CONTAINER -->
     <div id="quizBoxQ1" class="quiz-question-wrapper">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 1: Ham kab mily thy first time? 🗓️</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -351,7 +340,6 @@
       </div>
     </div>
 
-    <!-- QUESTION 2 CONTAINER -->
     <div id="quizBoxQ2" class="quiz-question-wrapper hidden">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 2: Tumhara favorite color konsa hy? 🎨</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -365,7 +353,6 @@
       </div>
     </div>
 
-    <!-- QUESTION 3 CONTAINER -->
     <div id="quizBoxQ3" class="quiz-question-wrapper hidden">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 3: Your Funny Nickname? 😜</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -377,7 +364,7 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 5: THE HAMID-METER POWER OVERLOAD -->
+<!-- SUSPENSE STAGE 5: LOVE METER OVERLOAD -->
 <div id="meterGatewayScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -408,8 +395,8 @@
       <a href="#countdown" title="Clock"><i class="fas fa-clock"></i></a>
       <a href="#loveLetter" title="Letter"><i class="fas fa-heart"></i></a>
       <a href="#funZone" title="Fun Zone"><i class="fas fa-gamepad"></i></a>
+      <a href="#cuteGifs" title="GIFs"><i class="fas fa-face-smile-wink"></i></a>
       <a href="#loveImages" title="Gallery"><i class="fas fa-images"></i></a>
-      <a href="#reasons" title="Reasons"><i class="fas fa-list-ol"></i></a>
       <a href="#wishes" title="Wishes"><i class="fas fa-star"></i></a>
       <a href="#loveVideos" title="Videos"><i class="fas fa-video"></i></a>
     </div>
@@ -471,17 +458,41 @@
     </div>
   </section>
 
-  <!-- SECTION 5: GALLERY CORE -->
-  <section id="loveImages" class="section bg-images">
-    <h2 class="section-title">📸 Captured Moments</h2>
-    <div class="img-flex">
-      <img src="assets/images/photo1.jpg" class="img-frame" onerror="this.src='https://picsum.photos/seed/love1/400/400'" alt="Memory 1" />
-      <img src="assets/images/photo2.jpg" class="img-frame" onerror="this.src='https://picsum.photos/seed/love2/400/400'" alt="Memory 2" />
-      <img src="assets/images/photo3.jpg" class="img-frame" onerror="this.src='https://picsum.photos/seed/love3/400/400'" alt="Memory 3" />
+  <!-- NEW SECTION 5: CUTE LIVE GIF WALL -->
+  <section id="cuteGifs" class="section bg-gifs">
+    <div style="display:flex; justify-content:center; margin-bottom:15px;">
+      <div class="romantic-sticker" style="outline-color:#ff9ff3; width:80px; height:80px; font-size:2.5rem; animation: bounceStick 2s infinite;">🥺</div>
+    </div>
+    <h2 class="section-title" style="margin-bottom: 10px;">Hamari Cute Vibe 💕</h2>
+    <p style="text-align:center; color:var(--text-secondary); font-weight:600; margin-bottom:20px;">Bilkul inki tarah lagte hain hum dono! 🙈</p>
+    
+    <div class="gif-container">
+      <div class="gif-card">
+        <img src="https://media.tenor.com/D-y_1o_1T7oAAAAj/milk-and-mocha-bear-couple.gif" alt="Cute Hug" />
+        <div class="gif-caption">When I hug you 🤗</div>
+      </div>
+      <div class="gif-card">
+        <img src="https://media.tenor.com/GfvkdYfG2Q8AAAAj/bubu-dudu-kiss.gif" alt="Forehead Kiss" />
+        <div class="gif-caption">My favorite job 😘</div>
+      </div>
+      <div class="gif-card">
+        <img src="https://media.tenor.com/Ztw-v6J3x9MAAAAj/cat-love.gif" alt="Cuddles" />
+        <div class="gif-caption">Pamper Mode On ✨</div>
+      </div>
     </div>
   </section>
 
-  <!-- SECTION 6: REASONS MATRICES -->
+  <!-- SECTION 6: PHOTO GALLERY -->
+  <section id="loveImages" class="section bg-images">
+    <h2 class="section-title">📸 Captured Moments</h2>
+    <div class="img-flex">
+      <img src="assets/images/photo1.jpg" class="img-frame" onerror="this.src='https://picsum.photos/seed/lovepics1/400/400'" alt="Memory 1" />
+      <img src="assets/images/photo2.jpg" class="img-frame" onerror="this.src='https://picsum.photos/seed/lovepics2/400/400'" alt="Memory 2" />
+      <img src="assets/images/photo3.jpg" class="img-frame" onerror="this.src='https://picsum.photos/seed/lovepics3/400/400'" alt="Memory 3" />
+    </div>
+  </section>
+
+  <!-- SECTION 7: REASONS -->
   <section id="reasons" class="section bg-reasons">
     <h2 class="section-title">💝 Six Reasons You're The One</h2>
     <div class="reasons-container">
@@ -494,7 +505,7 @@
     </div>
   </section>
 
-  <!-- SECTION 7: DEEP WISHES AND DUAS -->
+  <!-- SECTION 8: WISHES -->
   <section id="wishes" class="section bg-wishes">
     <h2 class="section-title">✨ Pure Duas For You ✨</h2>
     <div class="glass-card" style="max-width:580px; width:100%; background: rgba(255,255,255,0.93); border: 2px solid #ff7675;">
@@ -508,13 +519,12 @@
     </div>
   </section>
 
-  <!-- NEW SECTION 8: PREMIUM VIDEO INTERACTIVE SLIDER -->
+  <!-- SECTION 9: VIDEO CAROUSEL -->
   <section id="loveVideos" class="section bg-videos">
     <h2 class="section-title">🎥 Cinematic Memories</h2>
     <div class="glass-card video-slider-card">
       <div class="video-viewport">
-        <!-- Videos will cycle gracefully via Javascript framework below -->
-        <video id="sliderVideoPlayer" controls preload="metadata" poster="https://picsum.photos/seed/videoCover/600/350">
+        <video id="sliderVideoPlayer" controls preload="metadata" poster="https://picsum.photos/seed/videoCover1/600/350">
           <source src="assets/videos/video1.mp4" type="video/mp4" />
         </video>
       </div>
@@ -536,7 +546,7 @@
     password: '1109',
     riddleAns: 'amna',
     quizAnswers: {
-      q1: '2026-03-11', // 11 March 2026 Format Mapping
+      q1: '2026-03-11', 
       q2: 'black',
       q3: 'pamper'
     },
@@ -566,7 +576,7 @@
     ]
   };
 
-  // SYSTEM ANIMATED LOADER INFRASTRUCTURE
+  // SYSTEM ANIMATED LOADER 
   let currentLoad=0;
   function runLoader(){
     const ptr = setInterval(()=>{
@@ -590,7 +600,7 @@
     }, 65);
   }
 
-  // STAGE 1: GATEKEEPER COMBINATION VALIDATION
+  // STAGE 1: GATEKEEPER COMBINATION
   function evaluateGatewayKey(){
     const inputKey = $('#gateKey').value.trim();
     const icon = $('#statusIcon');
@@ -618,7 +628,7 @@
   $('#gateBtn').addEventListener('click', evaluateGatewayKey);
   $('#gateKey').addEventListener('keydown', e=>{ if(e.key==='Enter') evaluateGatewayKey(); });
 
-  // STAGE 2: RUNAWAY NO OPTION MECHANICS
+  // STAGE 2: RUNAWAY NO OPTION 
   function triggerReadyStage(){
     $('#readyScreen').classList.remove('hidden');
     const noBtn = $('#noBtn');
@@ -639,7 +649,7 @@
     });
   }
 
-  // STAGE 3: REGULATORY LEGAL COMPLIANCE
+  // STAGE 3: AGREEMENT
   function triggerAgreementStage(){
     $('#agreementScreen').classList.remove('hidden');
     const checks = document.querySelectorAll('.agree-check');
@@ -666,7 +676,7 @@
     });
   }
 
-  // STAGE 4: THE HEART RIDDLE ENGINE
+  // STAGE 4: RIDDLE
   function triggerRiddleStage(){
     $('#riddleScreen').classList.remove('hidden');
     $('#riddleAnswer').focus();
@@ -694,7 +704,7 @@
     $('#riddleAnswer').addEventListener('keydown', e => { if(e.key === 'Enter') verifyRiddle(); });
   }
 
-  // NEW STAGE 4.5: LOVE TESTING QUIZ ENGINE WITH SEQUENTIAL ARCHITECTURE
+  // STAGE 4.5: LOVE QUIZ
   let activeQuizStep = 1;
   function triggerLoveQuizStage() {
     $('#loveQuizScreen').classList.remove('hidden');
@@ -753,7 +763,7 @@
     }
   }
 
-  // STAGE 5: FINAL PERFORMANCE METER OVERLOAD CONTEXT
+  // STAGE 5: LOVE METER OVERLOAD 
   function triggerMeterGatewayStage() {
     $('#meterGatewayScreen').classList.remove('hidden');
     let currentCharge = 0;
@@ -774,7 +784,6 @@
       document.body.classList.add('boom-impact');
       setTimeout(() => document.body.classList.remove('boom-impact'), 100);
 
-      // Spawning dynamic micro elements during acceleration clicks
       const clip = document.createElement('div');
       clip.style.position = 'absolute';
       clip.style.left = (Math.random() * 60 + 20) + '%';
@@ -808,7 +817,6 @@
     });
   }
 
-  // DETONATING BLAST AND SYSTEM LOAD EXECUTION
   function detonatingSystemLaunch(){
     setTimeout(() => {
       $('#meterGatewayScreen').style.display = 'none';
@@ -843,7 +851,7 @@
     }, 400);
   }
 
-  // BACKGROUND SOUND CONTROL TUNNEL
+  // AUDIO LOGIC
   let trackPlaying = false;
   window.handleMusicTrack = function(forceIntent = false) {
     const audio = $('#loveEngineRoom');
@@ -859,7 +867,7 @@
   };
   $('#audioToggleBtn').addEventListener('click', () => handleMusicTrack());
 
-  // CORE LAUNCH DISTRIBUTION ENGINE
+  // CORE INIT
   function executeMainOperation(){
     initHeroCandleSystem();
     runCountdownEngine();
@@ -899,14 +907,12 @@
         smoke.style.left = '50%';
         smoke.style.top = '0px';
         cakeZone.appendChild(smoke);
-        
         setTimeout(() => {
           const driftX = (Math.random() * 60 - 30);
           const driftY = -(Math.random() * 80 + 40);
           smoke.style.transform = `translate(${driftX}px, ${driftY}px) scale(1.5)`;
           smoke.style.opacity = '0';
         }, 50);
-        
         setTimeout(() => smoke.remove(), 1300);
       }
 
@@ -920,11 +926,9 @@
           balloon.style.left = (Math.random() * 90 + 5) + '%';
           balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
           heroSection.appendChild(balloon);
-          
           setTimeout(() => balloon.remove(), 5000);
         }, i * 80);
       }
-
       setTimeout(startTypingProcess, 600);
     }, {once: true});
   }
@@ -986,20 +990,17 @@
   function initWishesCarousel(){
     let currentIdx = 0;
     const targetScreen = $('#wishTextDisplay');
-    
     function shiftWish(step){
       currentIdx += step;
       if(currentIdx >= INVENTORY.wishes.length) currentIdx = 0;
       if(currentIdx < 0) currentIdx = INVENTORY.wishes.length - 1;
       targetScreen.textContent = INVENTORY.wishes[currentIdx];
     }
-    
     $('#prevWish').addEventListener('click', () => shiftWish(-1));
     $('#nextWish').addEventListener('click', () => shiftWish(1));
     shiftWish(0);
   }
 
-  // NEW INTERACTIVE VIDEO SLIDER LOGIC
   function initVideoSliderEngine() {
     let activeVideoIdx = 0;
     const player = $('#sliderVideoPlayer');
@@ -1011,19 +1012,14 @@
       if(activeVideoIdx < 0) activeVideoIdx = INVENTORY.videoPool.length - 1;
 
       const currentVidData = INVENTORY.videoPool[activeVideoIdx];
-      
-      // Graceful updates to source properties safely
       player.src = currentVidData.src;
       player.poster = `https://picsum.photos/seed/${currentVidData.fallbackSeed}/600/350`;
       titleDis.textContent = currentVidData.title;
-      
-      // Auto-buffering on direct transition updates
       player.load();
     }
-
     $('#prevVideoBtn').addEventListener('click', () => loadActiveVideoFrame(-1));
     $('#nextVideoBtn').addEventListener('click', () => loadActiveVideoFrame(1));
-    loadActiveVideoFrame(0); // Initial boot routine sequence setup
+    loadActiveVideoFrame(0); 
   }
 
   function runAmbientFloatingHearts(){
@@ -1039,11 +1035,9 @@
       element.textContent = ['❤️','💖','💕','✨','🌸'][Math.floor(Math.random()*5)];
       element.style.transition = `transform ${Math.random()*5 + 5}s linear, opacity 3.5s`;
       container.appendChild(element);
-      
       setTimeout(()=>{
         element.style.transform = `translateY(-${window.innerHeight + 120}px) rotate(${Math.random()*360}deg)`;
       }, 50);
-
       setTimeout(()=>element.remove(), 10000);
     }, 550);
   }
