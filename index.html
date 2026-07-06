@@ -72,19 +72,24 @@
       box-shadow: 0 30px 60px rgba(255, 78, 80, 0.12);
     }
     
-    /* DIE-CUT GLOSSY GLOWING 3D STICKERS */
+    /* DIE-CUT GLOSSY GLOWING 3D STICKERS WITH GIF CAPABILITY */
     .romantic-sticker {
-      width: 115px; height: 115px;
+      width: 125px; height: 125px;
       background: #ffffff;
       border: 5px solid #ffffff;
       outline: 2.5px dashed #ff6b81;
       outline-offset: -1px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 3.8rem;
       box-shadow: 0 15px 30px rgba(255, 78, 80, 0.22), inset 0 4px 10px rgba(0,0,0,0.08);
       animation: heavyStickerFloat 4s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
       user-select: none;
+      overflow: hidden;
+    }
+    .romantic-sticker img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     @keyframes heavyStickerFloat {
       0%, 100% { transform: translateY(0) rotate(-6deg); }
@@ -235,7 +240,7 @@
 </head>
 <body>
 
-<!-- AUDIO TRACK (Replace src with your local music if needed) -->
+<!-- AUDIO TRACK -->
 <audio id="loveEngineRoom" loop preload="auto">
   <source src="assets/music/birthday.mp3" type="audio/mpeg" />
 </audio>
@@ -254,8 +259,11 @@
 <div id="passwordScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px; position:relative;">
-      <div style="position:absolute; width:130px; height:130px; background:rgba(255,78,80,0.15); border-radius:50%; animation: heartbeatGlow 1.5s infinite alternate; top:-8px;"></div>
-      <div id="statusIcon" class="romantic-sticker">🔒</div>
+      <div style="position:absolute; width:130px; height:130px; background:rgba(255,78,80,0.15); border-radius:50%; animation: heartbeatGlow 1.5s infinite alternate; top:-4px;"></div>
+      <!-- Bubu Dudu Interactive Live Sticker Container -->
+      <div class="romantic-sticker">
+        <img id="gateGif" src="https://media.tenor.com/v0_mS_wF_p8AAAAj/bubu-bubu-dudu.gif" alt="Bubu Dudu Hub" />
+      </div>
     </div>
     <h3 style="font-size:1.4rem; margin-bottom:10px; font-weight:700;">Security Clearance</h3>
     <div id="statusLog" style="font-size:0.95rem; margin-bottom:20px; font-weight:600; color:var(--text-secondary);">Enter 4-digit secret key to unlock...</div>
@@ -270,7 +278,9 @@
 <div id="readyScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
-      <div class="romantic-sticker" style="outline-color:#a55eea;">🥺</div>
+      <div class="romantic-sticker" style="outline-color:#a55eea;">
+        <img src="https://media.tenor.com/Ztw-v6J3x9MAAAAj/cat-love.gif" alt="Cute Bear" />
+      </div>
     </div>
     <h1 style="font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 20px;">Dil Thamb Lein? ✨</h1>
     <p style="margin-bottom:25px; color:var(--text-secondary); font-weight:600; line-height:1.6;">Agay barhne se pehle tyyar ho jayein, Hamid ne bohut special surprise setup kiya hy aapke liye! 😉</p>
@@ -285,7 +295,9 @@
 <div id="agreementScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
-      <div class="romantic-sticker" style="outline-color:#2af598;">📜</div>
+      <div class="romantic-sticker" style="outline-color:#2af598;">
+        <img src="https://media.tenor.com/GfvkdYfG2Q8AAAAj/bubu-dudu-kiss.gif" alt="Bubu Cute Note" />
+      </div>
     </div>
     <h2 style="font-size:1.65rem; margin-bottom:15px; font-weight:700;">⚠️ Love Agreement ⚠️</h2>
     <p style="font-size:0.9rem; font-weight:700; margin-bottom:22px; color:#ff4e50; letter-spacing:0.5px;">Accept all terms to activate package:</p>
@@ -311,7 +323,9 @@
 <div id="riddleScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
-      <div id="riddleSticker" class="romantic-sticker" style="outline-color:#ffa502;">🤔</div>
+      <div class="romantic-sticker" style="outline-color:#ffa502;">
+        <img id="riddleGif" src="https://media.tenor.com/v0_mS_wF_p8AAAAj/bubu-bubu-dudu.gif" alt="Bubu Thinking" />
+      </div>
     </div>
     <h2 style="font-size:1.6rem; margin-bottom:12px; font-weight:700;">🧩 Level 4: The Heart Riddle</h2>
     <p style="font-size:0.98rem; font-weight:600; color:var(--text-secondary); margin-bottom:20px; line-height:1.6;">
@@ -328,7 +342,9 @@
 <div id="loveQuizScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
-      <div id="quizSticker" class="romantic-sticker" style="outline-color:#ff4757;">💖</div>
+      <div class="romantic-sticker" style="outline-color:#ff4757;">
+        <img id="quizGif" src="https://media.tenor.com/v0_mS_wF_p8AAAAj/bubu-bubu-dudu.gif" alt="Bubu Quiz Master" />
+      </div>
     </div>
     <h2 id="quizTitle" style="font-size:1.5rem; margin-bottom:10px; font-weight:700;">💘 Love Testing Quiz</h2>
     <p id="quizInstructions" style="font-size:0.95rem; font-weight:600; color:var(--text-secondary); margin-bottom:20px; line-height:1.5;">Answer accurately to verify your clearance status! ✨</p>
@@ -368,7 +384,9 @@
 <div id="meterGatewayScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
-      <div id="vaultSticker" class="romantic-sticker" style="outline-color:#ff4e50;">🔒</div>
+      <div class="romantic-sticker" style="outline-color:#ff4e50;">
+        <img id="vaultGif" src="https://media.tenor.com/v0_mS_wF_p8AAAAj/bubu-bubu-dudu.gif" alt="Bubu Vault Core" />
+      </div>
     </div>
     <h3 id="vaultTitle" style="font-size:1.5rem; margin-bottom:12px; font-weight:700;">Final Security Firewall!</h3>
     <p id="vaultInstruct" style="font-size:0.95rem; font-weight:600; color:var(--text-secondary); line-height:1.6;">
@@ -458,10 +476,12 @@
     </div>
   </section>
 
-  <!-- NEW SECTION 5: CUTE LIVE GIF WALL -->
+  <!-- SECTION 5: CUTE LIVE GIF WALL -->
   <section id="cuteGifs" class="section bg-gifs">
     <div style="display:flex; justify-content:center; margin-bottom:15px;">
-      <div class="romantic-sticker" style="outline-color:#ff9ff3; width:80px; height:80px; font-size:2.5rem; animation: bounceStick 2s infinite;">🥺</div>
+      <div class="romantic-sticker" style="outline-color:#ff9ff3; width:80px; height:80px; font-size:2.5rem; animation: bounceStick 2s infinite;">
+        <img src="https://media.tenor.com/Ztw-v6J3x9MAAAAj/cat-love.gif" alt="Cuddles Core" />
+      </div>
     </div>
     <h2 class="section-title" style="margin-bottom: 10px;">Hamari Cute Vibe 💕</h2>
     <p style="text-align:center; color:var(--text-secondary); font-weight:600; margin-bottom:20px;">Bilkul inki tarah lagte hain hum dono! 🙈</p>
@@ -542,6 +562,13 @@
 (function(){
   const $=s=>document.querySelector(s);
   
+  // DIRECT STABLE HIGH-SPEED REAL BUBU DUDU RENDERS
+  const BUBU_ENGINE = {
+    default: "https://media.tenor.com/v0_mS_wF_p8AAAAj/bubu-bubu-dudu.gif",
+    wrong: "https://media.tenor.com/InveSgdO698AAAAj/bubu-dudu-angry.gif",
+    right: "https://media.tenor.com/GfvkdYfG2Q8AAAAj/bubu-dudu-kiss.gif"
+  };
+
   const INVENTORY={
     password: '1109',
     riddleAns: 'amna',
@@ -600,27 +627,28 @@
     }, 65);
   }
 
-  // STAGE 1: GATEKEEPER COMBINATION
+  // STAGE 1: GATEKEEPER PASS CODE COMBINATION
   function evaluateGatewayKey(){
     const inputKey = $('#gateKey').value.trim();
-    const icon = $('#statusIcon');
     const log = $('#statusLog');
+    const targetGif = $('#gateGif');
     
     if(inputKey === INVENTORY.password){
-      icon.innerHTML = "👑";
-      icon.style.outlineColor = "#2af598";
+      targetGif.src = BUBU_ENGINE.right; // Switch to Kissing animation instantly
       log.style.color = "#ff4e50";
       log.textContent = "Combination Verified! Welcome Queen. ✅";
       setTimeout(()=>{
         $('#passwordScreen').style.display = 'none';
         triggerReadyStage();
-      }, 1100);
+      }, 1600);
     } else {
-      icon.innerHTML = "❌";
-      icon.style.outlineColor = "#ff3333";
+      targetGif.src = BUBU_ENGINE.wrong; // Switch to Angry Bubu animation instantly
       log.textContent = "Incorrect Code! Double check keys, meri jaan! 🥺";
       $('#gateKey').classList.add('shake-anim');
-      setTimeout(()=>$('#gateKey').classList.remove('shake-anim'), 400);
+      setTimeout(()=>{
+        $('#gateKey').classList.remove('shake-anim');
+        targetGif.src = BUBU_ENGINE.default; // Reset back to waiting mode
+      }, 1500);
       $('#gateKey').value = '';
       $('#gateKey').focus();
     }
@@ -680,22 +708,23 @@
   function triggerRiddleStage(){
     $('#riddleScreen').classList.remove('hidden');
     $('#riddleAnswer').focus();
+    const targetGif = $('#riddleGif');
 
     const verifyRiddle = () => {
       const ans = $('#riddleAnswer').value.trim().toLowerCase();
-      const sticker = $('#riddleSticker');
       if(ans === INVENTORY.riddleAns){
-        sticker.textContent = "🥰";
-        sticker.style.outlineColor = "#2af598";
+        targetGif.src = BUBU_ENGINE.right; // Switch to Kissing animation instantly
         setTimeout(() => {
           $('#riddleScreen').style.display = 'none';
           triggerLoveQuizStage();
-        }, 1100);
+        }, 1600);
       } else {
-        sticker.textContent = "❌";
-        sticker.style.outlineColor = "#ff3333";
+        targetGif.src = BUBU_ENGINE.wrong; // Switch to Angry Bubu animation instantly
         $('#riddleAnswer').classList.add('shake-anim');
-        setTimeout(() => $('#riddleAnswer').classList.remove('shake-anim'), 400);
+        setTimeout(() => {
+          $('#riddleAnswer').classList.remove('shake-anim');
+          targetGif.src = BUBU_ENGINE.default; // Reset back to thinking mode
+        }, 1500);
         $('#riddleAnswer').value = '';
       }
     };
@@ -704,24 +733,24 @@
     $('#riddleAnswer').addEventListener('keydown', e => { if(e.key === 'Enter') verifyRiddle(); });
   }
 
-  // STAGE 4.5: LOVE QUIZ
+  // STAGE 4.5: LOVE TESTING QUIZ
   let activeQuizStep = 1;
   function triggerLoveQuizStage() {
     $('#loveQuizScreen').classList.remove('hidden');
-    const sticker = $('#quizSticker');
     const subBtn = $('#quizSubmitBtn');
+    const targetGif = $('#quizGif');
 
     subBtn.addEventListener('click', () => {
       if(activeQuizStep === 1) {
         const val1 = $('#quizAns1').value;
         if(val1 === INVENTORY.quizAnswers.q1) {
-          sticker.textContent = "🎯"; sticker.style.outlineColor = "#2af598";
+          targetGif.src = BUBU_ENGINE.right; // Success Kisses!
           setTimeout(() => {
             $('#quizBoxQ1').classList.add('hidden');
             $('#quizBoxQ2').classList.remove('hidden');
-            sticker.textContent = "🎨"; sticker.style.outlineColor = "#ff4757";
+            targetGif.src = BUBU_ENGINE.default; // Reset for next
             activeQuizStep = 2;
-          }, 800);
+          }, 1200);
         } else {
           triggerQuizFailure($('#quizAns1'));
         }
@@ -729,13 +758,13 @@
       else if(activeQuizStep === 2) {
         const val2 = $('#quizAns2').value;
         if(val2 === INVENTORY.quizAnswers.q2) {
-          sticker.textContent = "🔮"; sticker.style.outlineColor = "#2af598";
+          targetGif.src = BUBU_ENGINE.right; // Success Kisses!
           setTimeout(() => {
             $('#quizBoxQ2').classList.add('hidden');
             $('#quizBoxQ3').classList.remove('hidden');
-            sticker.textContent = "😜"; sticker.style.outlineColor = "#ff4757";
+            targetGif.src = BUBU_ENGINE.default; // Reset for final question
             activeQuizStep = 3;
-          }, 800);
+          }, 1200);
         } else {
           triggerQuizFailure($('#quizAns2'));
         }
@@ -743,12 +772,12 @@
       else if(activeQuizStep === 3) {
         const val3 = $('#quizAns3').value.trim().toLowerCase();
         if(val3 === INVENTORY.quizAnswers.q3) {
-          sticker.textContent = "👑"; sticker.style.outlineColor = "#2af598";
+          targetGif.src = BUBU_ENGINE.right; // Ultimate Quiz Success Kisses!
           $('#quizTitle').textContent = "Quiz Passed Completely!";
           setTimeout(() => {
             $('#loveQuizScreen').style.display = 'none';
             triggerMeterGatewayStage();
-          }, 1100);
+          }, 1600);
         } else {
           triggerQuizFailure($('#quizAns3'));
         }
@@ -756,10 +785,12 @@
     });
 
     function triggerQuizFailure(targetInput) {
-      sticker.textContent = "❌";
-      sticker.style.outlineColor = "#ff3333";
+      targetGif.src = BUBU_ENGINE.wrong; // Mukka Attack!
       targetInput.classList.add('shake-anim');
-      setTimeout(() => targetInput.classList.remove('shake-anim'), 400);
+      setTimeout(() => {
+        targetInput.classList.remove('shake-anim');
+        targetGif.src = BUBU_ENGINE.default;
+      }, 1500);
     }
   }
 
@@ -770,7 +801,7 @@
     const fill = $('#loveMeterFill');
     const text = $('#loveMeterText');
     const btn = $('#chargeVaultBtn');
-    const sticker = $('#vaultSticker');
+    const targetGif = $('#vaultGif');
 
     btn.addEventListener('click', () => {
       if(currentCharge >= 1000) return;
@@ -784,6 +815,7 @@
       document.body.classList.add('boom-impact');
       setTimeout(() => document.body.classList.remove('boom-impact'), 100);
 
+      // Create burst particles
       const clip = document.createElement('div');
       clip.style.position = 'absolute';
       clip.style.left = (Math.random() * 60 + 20) + '%';
@@ -800,16 +832,11 @@
       }, 20);
 
       if(currentCharge >= 400 && currentCharge < 800) {
-        sticker.textContent = "🔓";
-        sticker.style.outlineColor = "#ffa502";
         $('#vaultTitle').textContent = "Matrix Defenses Crumbling...";
       } else if (currentCharge >= 800 && currentCharge < 1000) {
-        sticker.textContent = "🔥";
-        sticker.style.outlineColor = "#ff4757";
         $('#vaultTitle').textContent = "CRITICAL LOAD OVERPOWER!";
       } else if(currentCharge === 1000) {
-        sticker.textContent = "🥳";
-        sticker.style.outlineColor = "#2af598";
+        targetGif.src = BUBU_ENGINE.right; // Dher saari kisses on engine load complete
         $('#vaultTitle').textContent = "Access Granted! Launching Portal!";
         btn.disabled = true;
         detonatingSystemLaunch();
@@ -851,7 +878,7 @@
     }, 400);
   }
 
-  // AUDIO LOGIC
+  // AUDIO LOGIC TRACKS CONTROL
   let trackPlaying = false;
   window.handleMusicTrack = function(forceIntent = false) {
     const audio = $('#loveEngineRoom');
@@ -860,14 +887,14 @@
     if(forceIntent || !trackPlaying) {
       audio.play().then(()=>{
         trackPlaying = true; btn.textContent = '🎵 Music: ON';
-      }).catch(err=>console.log("Audio waiting context trigger."));
+      }).catch(err=>console.log("Audio waiting direct action context."));
     } else {
       audio.pause(); trackPlaying = false; btn.textContent = '🎵 Music: OFF';
     }
   };
   $('#audioToggleBtn').addEventListener('click', () => handleMusicTrack());
 
-  // CORE INIT
+  // CORE SITE EXECUTION BUILD
   function executeMainOperation(){
     initHeroCandleSystem();
     runCountdownEngine();
@@ -895,7 +922,6 @@
     $('#cakeClickZone').addEventListener('click', function(){
       $('#candleFlame').style.opacity = '0';
       $('#cakeTip').textContent = "Candle Blown! Birthday Celebrated! 💖";
-      
       $('.cake-main').textContent = "🍰";
       $('.cake-main').style.transform = "scale(1.2) rotate(5deg)";
 
