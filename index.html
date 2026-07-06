@@ -38,6 +38,7 @@
     .bg-images { background: linear-gradient(135deg, #ffeef0, #fff5f6, #f3e6f7); background-size: 300% 300%; animation: aurora 11s ease infinite; }
     .bg-reasons { background: linear-gradient(45deg, #e6faff, #e6eeff, #ebe6ff); background-size: 300% 300%; animation: aurora 9s ease infinite; }
     .bg-wishes { background: linear-gradient(135deg, #ffebeb, #ffeefc, #e6f0ff); background-size: 300% 300%; animation: aurora 8s ease infinite; }
+    .bg-videos { background: linear-gradient(225deg, #fff0f5, #eef2ff, #fbf0ff); background-size: 300% 300%; animation: aurora 10s ease infinite; }
 
     @keyframes aurora {
       0%{background-position:0% 50%}
@@ -113,13 +114,13 @@
     }
 
     /* SYSTEM INPUT BOXES */
-    .pwd-input-area input {
-      width: 100%; max-width: 260px; padding: 14px; font-size: 1.6rem; text-align: center; border: 3px solid rgba(255, 78, 80, 0.25);
+    .pwd-input-area input, .pwd-input-area select {
+      width: 100%; max-width: 260px; padding: 14px; font-size: 1.4rem; text-align: center; border: 3px solid rgba(255, 78, 80, 0.25);
       border-radius: 20px; background: rgba(255,255,255,0.95); color: var(--text-main); outline: none; transition: all 0.3s;
-      box-shadow: inset 0 4px 8px rgba(0,0,0,0.03);
+      box-shadow: inset 0 4px 8px rgba(0,0,0,0.03); font-family: var(--font-body);
     }
     .pwd-input-area input.secret-pass { letter-spacing: 8px; font-size: 2rem; }
-    .pwd-input-area input:focus { border-color: #ff4e50; box-shadow: 0 0 25px rgba(255,78,80,0.35); transform: scale(1.05); }
+    .pwd-input-area input:focus, .pwd-input-area select:focus { border-color: #ff4e50; box-shadow: 0 0 25px rgba(255,78,80,0.35); transform: scale(1.05); }
     .shake-anim { animation: hardShake 0.4s ease; border-color: #ff3333 !important; }
     @keyframes hardShake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-12px)} 40%,80%{transform:translateX(12px)} }
 
@@ -221,6 +222,11 @@
     .circle-arrow { background: rgba(255, 78, 80, 0.08); border:1.5px solid rgba(255, 78, 80, 0.15); width:46px; height:46px; border-radius:50%; color:#ff4e50; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size: 1.15rem; }
     .circle-arrow:hover { background:#ff4e50; color:#fff; transform: scale(1.1); }
 
+    /* VIDEO CAROUSEL CORE DESIGN */
+    .video-slider-card { max-width: 650px; width:100%; text-align:center; padding: 25px; background: rgba(255, 255, 255, 0.6); }
+    .video-viewport { width: 100%; height: 350px; border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 4px solid #fff; position: relative; }
+    .video-viewport video { width: 100%; height: 100%; object-fit: cover; }
+
     #heartsCanvasZone { position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden; }
     .boom-impact { animation: joltScreen 0.15s ease 3; }
     @keyframes joltScreen { 0%,100%{transform:translate(0,0)} 25%{transform:translate(-5px, 5px)} 75%{transform:translate(5px, -5px)} }
@@ -234,6 +240,7 @@
       .img-frame { width: 150px; height: 150px; }
       #floatingNav { padding: 10px 14px; }
       .nav-brand { display:none; }
+      .video-viewport { height: 240px; }
     }
   </style>
 </head>
@@ -310,7 +317,7 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 4 (NEW): THE SECRET ROMANTIC RIDDLE -->
+<!-- SUSPENSE STAGE 4: THE SECRET ROMANTIC RIDDLE -->
 <div id="riddleScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -327,7 +334,50 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 5 (NEW): THE HAMID-METER POWER OVERLOAD -->
+<!-- NEW SUSPENSE STAGE 4.5: THE ADVANCED LOVE QUIZ GATEKEEPER -->
+<div id="loveQuizScreen" class="wizard-overlay hidden">
+  <div class="card-wizard glass-card">
+    <div style="display:flex; justify-content:center; margin-bottom:20px;">
+      <div id="quizSticker" class="romantic-sticker" style="outline-color:#ff4757;">💖</div>
+    </div>
+    <h2 id="quizTitle" style="font-size:1.5rem; margin-bottom:10px; font-weight:700;">💘 Love Testing Quiz</h2>
+    <p id="quizInstructions" style="font-size:0.95rem; font-weight:600; color:var(--text-secondary); margin-bottom:20px; line-height:1.5;">Answer accurately to verify your clearance status! ✨</p>
+    
+    <!-- QUESTION 1 CONTAINER -->
+    <div id="quizBoxQ1" class="quiz-question-wrapper">
+      <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 1: Ham kab mily thy first time? 🗓️</p>
+      <div class="pwd-input-area" style="margin-bottom:20px;">
+        <input type="date" id="quizAns1" />
+      </div>
+    </div>
+
+    <!-- QUESTION 2 CONTAINER -->
+    <div id="quizBoxQ2" class="quiz-question-wrapper hidden">
+      <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 2: Tumhara favorite color konsa hy? 🎨</p>
+      <div class="pwd-input-area" style="margin-bottom:20px;">
+        <select id="quizAns2">
+          <option value="">Select Color...</option>
+          <option value="red">Red 🔴</option>
+          <option value="pink">Pink 🌸</option>
+          <option value="black">Black ⚫</option>
+          <option value="white">White ⚪</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- QUESTION 3 CONTAINER -->
+    <div id="quizBoxQ3" class="quiz-question-wrapper hidden">
+      <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 3: Your Funny Nickname? 😜</p>
+      <div class="pwd-input-area" style="margin-bottom:20px;">
+        <input type="text" id="quizAns3" placeholder="Type funny name..." style="text-transform: lowercase;" />
+      </div>
+    </div>
+
+    <button id="quizSubmitBtn" class="btn-action">Verify Answer 🎯</button>
+  </div>
+</div>
+
+<!-- SUSPENSE STAGE 5: THE HAMID-METER POWER OVERLOAD -->
 <div id="meterGatewayScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -361,6 +411,7 @@
       <a href="#loveImages" title="Gallery"><i class="fas fa-images"></i></a>
       <a href="#reasons" title="Reasons"><i class="fas fa-list-ol"></i></a>
       <a href="#wishes" title="Wishes"><i class="fas fa-star"></i></a>
+      <a href="#loveVideos" title="Videos"><i class="fas fa-video"></i></a>
     </div>
   </nav>
 
@@ -443,7 +494,7 @@
     </div>
   </section>
 
-  <!-- SECTION 7: FINAL PAGES (DEEP WISHES AND DUAS UNLOCKED AT END) -->
+  <!-- SECTION 7: DEEP WISHES AND DUAS -->
   <section id="wishes" class="section bg-wishes">
     <h2 class="section-title">✨ Pure Duas For You ✨</h2>
     <div class="glass-card" style="max-width:580px; width:100%; background: rgba(255,255,255,0.93); border: 2px solid #ff7675;">
@@ -457,6 +508,24 @@
     </div>
   </section>
 
+  <!-- NEW SECTION 8: PREMIUM VIDEO INTERACTIVE SLIDER -->
+  <section id="loveVideos" class="section bg-videos">
+    <h2 class="section-title">🎥 Cinematic Memories</h2>
+    <div class="glass-card video-slider-card">
+      <div class="video-viewport">
+        <!-- Videos will cycle gracefully via Javascript framework below -->
+        <video id="sliderVideoPlayer" controls preload="metadata" poster="https://picsum.photos/seed/videoCover/600/350">
+          <source src="assets/videos/video1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p id="videoTitleDisplay" style="margin-top: 15px; font-weight: 700; color: var(--text-secondary); font-size: 1.05rem;">Memory Clip #1</p>
+      <div class="wish-nav-row" style="margin-top: 15px;">
+        <button class="circle-arrow" id="prevVideoBtn"><i class="fas fa-arrow-left"></i></button>
+        <button class="circle-arrow" id="nextVideoBtn"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script>
@@ -466,6 +535,11 @@
   const INVENTORY={
     password: '1109',
     riddleAns: 'amna',
+    quizAnswers: {
+      q1: '2026-03-11', // 11 March 2026 Format Mapping
+      q2: 'black',
+      q3: 'pamper'
+    },
     birthday: new Date('September 11, 2026 00:00:00'),
     letterText: "You are the single most beautiful segment of my life journey. Every sequence spent alongside you feels entirely like an ethereal dreamscape I never intend to escape from. Your pure presence lights up my darkest moments, your warm laughter remains the sweetest melody my soul has ever processed, and your absolute selfless love is the ultimate prize of my life. Happy Birthday, my absolute world. ❤️",
     wishes: [
@@ -482,6 +556,13 @@
       {type:'urdu', val:"خدا کرے کہ سلامت رہیں ہمیشہ وہ\nجن کی ہنسی سے میری کائنات روشن ہے... ❤️"},
       {type:'text', val:"Congratulations! You just won the award for the best wife in the universe for the 100th consecutive month! 🏆🌍"},
       {type:'urdu', val:"تم میری وہ خوشی ho جس کے سامنے\nدنیا کے سارے خزانے مٹی لگتے ہیں... ✨"}
+    ],
+    videoPool: [
+      {src: "assets/videos/video1.mp4", fallbackSeed: "lovevideo1", title: "Our Beautiful Journey Begins 🌸"},
+      {src: "assets/videos/video2.mp4", fallbackSeed: "lovevideo2", title: "The Sound of Your Laughter 🎵"},
+      {src: "assets/videos/video3.mp4", fallbackSeed: "lovevideo3", title: "Moments I Treasure Forever 💖"},
+      {src: "assets/videos/video4.mp4", fallbackSeed: "lovevideo4", title: "Every Single Day With You ✨"},
+      {src: "assets/videos/video5.mp4", fallbackSeed: "lovevideo5", title: "My Queen, My Entire World 👑"}
     ]
   };
 
@@ -598,7 +679,7 @@
         sticker.style.outlineColor = "#2af598";
         setTimeout(() => {
           $('#riddleScreen').style.display = 'none';
-          triggerMeterGatewayStage();
+          triggerLoveQuizStage();
         }, 1100);
       } else {
         sticker.textContent = "❌";
@@ -611,6 +692,65 @@
 
     $('#riddleBtn').addEventListener('click', verifyRiddle);
     $('#riddleAnswer').addEventListener('keydown', e => { if(e.key === 'Enter') verifyRiddle(); });
+  }
+
+  // NEW STAGE 4.5: LOVE TESTING QUIZ ENGINE WITH SEQUENTIAL ARCHITECTURE
+  let activeQuizStep = 1;
+  function triggerLoveQuizStage() {
+    $('#loveQuizScreen').classList.remove('hidden');
+    const sticker = $('#quizSticker');
+    const subBtn = $('#quizSubmitBtn');
+
+    subBtn.addEventListener('click', () => {
+      if(activeQuizStep === 1) {
+        const val1 = $('#quizAns1').value;
+        if(val1 === INVENTORY.quizAnswers.q1) {
+          sticker.textContent = "🎯"; sticker.style.outlineColor = "#2af598";
+          setTimeout(() => {
+            $('#quizBoxQ1').classList.add('hidden');
+            $('#quizBoxQ2').classList.remove('hidden');
+            sticker.textContent = "🎨"; sticker.style.outlineColor = "#ff4757";
+            activeQuizStep = 2;
+          }, 800);
+        } else {
+          triggerQuizFailure($('#quizAns1'));
+        }
+      } 
+      else if(activeQuizStep === 2) {
+        const val2 = $('#quizAns2').value;
+        if(val2 === INVENTORY.quizAnswers.q2) {
+          sticker.textContent = "🔮"; sticker.style.outlineColor = "#2af598";
+          setTimeout(() => {
+            $('#quizBoxQ2').classList.add('hidden');
+            $('#quizBoxQ3').classList.remove('hidden');
+            sticker.textContent = "😜"; sticker.style.outlineColor = "#ff4757";
+            activeQuizStep = 3;
+          }, 800);
+        } else {
+          triggerQuizFailure($('#quizAns2'));
+        }
+      } 
+      else if(activeQuizStep === 3) {
+        const val3 = $('#quizAns3').value.trim().toLowerCase();
+        if(val3 === INVENTORY.quizAnswers.q3) {
+          sticker.textContent = "👑"; sticker.style.outlineColor = "#2af598";
+          $('#quizTitle').textContent = "Quiz Passed Completely!";
+          setTimeout(() => {
+            $('#loveQuizScreen').style.display = 'none';
+            triggerMeterGatewayStage();
+          }, 1100);
+        } else {
+          triggerQuizFailure($('#quizAns3'));
+        }
+      }
+    });
+
+    function triggerQuizFailure(targetInput) {
+      sticker.textContent = "❌";
+      sticker.style.outlineColor = "#ff3333";
+      targetInput.classList.add('shake-anim');
+      setTimeout(() => targetInput.classList.remove('shake-anim'), 400);
+    }
   }
 
   // STAGE 5: FINAL PERFORMANCE METER OVERLOAD CONTEXT
@@ -726,6 +866,7 @@
     initLetterSystem();
     initFunMachine();
     initWishesCarousel();
+    initVideoSliderEngine();
     runAmbientFloatingHearts();
     setupNavigationTracker();
   }
@@ -744,15 +885,12 @@
     }
 
     $('#cakeClickZone').addEventListener('click', function(){
-      // 1. Fade out flame and update tip bubble text
       $('#candleFlame').style.opacity = '0';
       $('#cakeTip').textContent = "Candle Blown! Birthday Celebrated! 💖";
       
-      // 2. Dynamic Slice Transformation
       $('.cake-main').textContent = "🍰";
       $('.cake-main').style.transform = "scale(1.2) rotate(5deg)";
 
-      // 3. Trigger Real-time Smoke Particles
       const cakeZone = $('#cakeClickZone');
       for(let i = 0; i < 5; i++) {
         const smoke = document.createElement('div');
@@ -772,7 +910,6 @@
         setTimeout(() => smoke.remove(), 1300);
       }
 
-      // 4. Staggered Cascading Balloon Blast from bottom
       const heroSection = $('#hero');
       const balloonEmojis = ['🎈', '🍬', '✨', '🎈', '🎉'];
       for(let i = 0; i < 25; i++) {
@@ -788,7 +925,6 @@
         }, i * 80);
       }
 
-      // 5. Trigger text typing routine delay sequence
       setTimeout(startTypingProcess, 600);
     }, {once: true});
   }
@@ -861,6 +997,33 @@
     $('#prevWish').addEventListener('click', () => shiftWish(-1));
     $('#nextWish').addEventListener('click', () => shiftWish(1));
     shiftWish(0);
+  }
+
+  // NEW INTERACTIVE VIDEO SLIDER LOGIC
+  function initVideoSliderEngine() {
+    let activeVideoIdx = 0;
+    const player = $('#sliderVideoPlayer');
+    const titleDis = $('#videoTitleDisplay');
+
+    function loadActiveVideoFrame(directionStep) {
+      activeVideoIdx += directionStep;
+      if(activeVideoIdx >= INVENTORY.videoPool.length) activeVideoIdx = 0;
+      if(activeVideoIdx < 0) activeVideoIdx = INVENTORY.videoPool.length - 1;
+
+      const currentVidData = INVENTORY.videoPool[activeVideoIdx];
+      
+      // Graceful updates to source properties safely
+      player.src = currentVidData.src;
+      player.poster = `https://picsum.photos/seed/${currentVidData.fallbackSeed}/600/350`;
+      titleDis.textContent = currentVidData.title;
+      
+      // Auto-buffering on direct transition updates
+      player.load();
+    }
+
+    $('#prevVideoBtn').addEventListener('click', () => loadActiveVideoFrame(-1));
+    $('#nextVideoBtn').addEventListener('click', () => loadActiveVideoFrame(1));
+    loadActiveVideoFrame(0); // Initial boot routine sequence setup
   }
 
   function runAmbientFloatingHearts(){
