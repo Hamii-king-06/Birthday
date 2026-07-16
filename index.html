@@ -223,46 +223,39 @@
     .circle-arrow { background: rgba(255, 78, 80, 0.08); border:1.5px solid rgba(255, 78, 80, 0.15); width:46px; height:46px; border-radius:50%; color:#ff4e50; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size: 1.15rem; }
     .circle-arrow:hover { background:#ff4e50; color:#fff; transform: scale(1.1); }
 
-    /* VIDEO CAROUSEL CORE DESIGN */
+    /* VIDEO CAROUSEL WITH OVERLAY CONTROLS */
     .video-slider-card { max-width: 650px; width:100%; text-align:center; padding: 25px; background: rgba(255, 255, 255, 0.6); }
     .video-viewport { width: 100%; height: 350px; border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 4px solid #fff; position: relative; }
     .video-viewport video { width: 100%; height: 100%; object-fit: cover; }
 
-    /* VIDEO CUSTOM ROMANTIC POSTER OVERLAYS */
-    .video-custom-poster {
+    /* FLOATING VIDEO CONTROLS */
+    .video-controls-overlay {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #ff6b81, #ff4757);
+      bottom: 15px;
+      right: 15px;
       display: flex;
-      flex-direction: column;
+      gap: 10px;
+      z-index: 10;
+    }
+    .vid-ctrl-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--text-main);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .vid-ctrl-btn:hover {
+      background: #ff4e50;
       color: #fff;
-      z-index: 5;
-      cursor: pointer;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
-    .video-custom-poster i {
-      font-size: 4rem;
-      color: #fff;
-      filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
-      animation: beatPlayBtn 1.2s infinite alternate;
-    }
-    .video-custom-poster span {
-      margin-top: 15px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.5px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    }
-    .video-custom-poster.playing {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    @keyframes beatPlayBtn {
-      from { transform: scale(1); }
-      to { transform: scale(1.15); }
+      transform: scale(1.15);
     }
 
     #heartsCanvasZone { position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden; }
@@ -289,6 +282,7 @@
 </audio>
 <button id="audioToggleBtn" style="position:fixed; bottom:25px; right:25px; z-index:1000; padding:12px 22px; border-radius:30px; border:none; background:#ff4e50; color:#fff; font-weight:700; box-shadow:0 8px 22px rgba(255,78,80,0.35); cursor:pointer; display:none;">🎵 Music: OFF</button>
 
+<!-- LOADING COMPONENT -->
 <div id="loader">
   <div class="loader-wrap">
     <div class="loader-pulse">👑</div>
@@ -297,6 +291,7 @@
   </div>
 </div>
 
+<!-- SUSPENSE STAGE 1: PORTAL LOGIN STICKER DECK -->
 <div id="passwordScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px; position:relative;">
@@ -312,6 +307,7 @@
   </div>
 </div>
 
+<!-- SUSPENSE STAGE 2: RUNAWAY CHOICE ENGINE -->
 <div id="readyScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -326,6 +322,7 @@
   </div>
 </div>
 
+<!-- SUSPENSE STAGE 3: COMPLIANCE SIGNATURE AGREEMENT -->
 <div id="agreementScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -351,6 +348,7 @@
   </div>
 </div>
 
+<!-- SUSPENSE STAGE 4: THE SECRET ROMANTIC RIDDLE -->
 <div id="riddleScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -367,6 +365,7 @@
   </div>
 </div>
 
+<!-- SUSPENSE STAGE 4.5: THE ADVANCED LOVE QUIZ GATEKEEPER -->
 <div id="loveQuizScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -375,6 +374,7 @@
     <h2 id="quizTitle" style="font-size:1.5rem; margin-bottom:10px; font-weight:700;">💘 Love Testing Quiz</h2>
     <p id="quizInstructions" style="font-size:0.95rem; font-weight:600; color:var(--text-secondary); margin-bottom:20px; line-height:1.5;">Answer accurately to verify your clearance status! ✨</p>
     
+    <!-- QUESTION 1 CONTAINER -->
     <div id="quizBoxQ1" class="quiz-question-wrapper">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 1: Ham kab mily thy first time? 🗓️</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -382,6 +382,7 @@
       </div>
     </div>
 
+    <!-- QUESTION 2 CONTAINER -->
     <div id="quizBoxQ2" class="quiz-question-wrapper hidden">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 2: Tumhara favorite color konsa hy? 🎨</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -395,6 +396,7 @@
       </div>
     </div>
 
+    <!-- QUESTION 3 CONTAINER -->
     <div id="quizBoxQ3" class="quiz-question-wrapper hidden">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 3: Your Funny Nickname? 😜</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -406,6 +408,7 @@
   </div>
 </div>
 
+<!-- SUSPENSE STAGE 5: THE HAMID-METER POWER OVERLOAD -->
 <div id="meterGatewayScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -423,8 +426,10 @@
   </div>
 </div>
 
+<!-- FLOATING PARTICLES LAYER -->
 <div id="heartsCanvasZone"></div>
 
+<!-- MAIN PRESENTATION SITE CONTENT -->
 <div id="mainSite" class="hidden">
   
   <nav id="floatingNav">
@@ -442,6 +447,7 @@
     </div>
   </nav>
 
+  <!-- SECTION 1: HERO MODULE -->
   <section id="hero" class="section bg-hero">
     <div class="glass-card" style="text-align:center; max-width:600px; width:100%;">
       <div class="cake-wrapper" id="cakeClickZone">
@@ -455,6 +461,7 @@
     </div>
   </section>
 
+  <!-- SECTION 2: TIMER COUNTDOWN -->
   <section id="countdown" class="section bg-countdown">
     <h2 class="section-title">⏳ The Birthday Countdown</h2>
     <div class="glass-card">
@@ -467,6 +474,7 @@
     </div>
   </section>
 
+  <!-- SECTION 3: LETTER STREAM -->
   <section id="loveLetter" class="section bg-letter">
     <h2 class="section-title">💌 A Letter From Hamid</h2>
     <div class="glass-card letter-box" id="clickableLetterBox">
@@ -483,6 +491,7 @@
     </div>
   </section>
 
+  <!-- SECTION 4: SHAYARI ENGINE -->
   <section id="funZone" class="section bg-fun">
     <h2 class="section-title">🎰 The Magic Smile Generator</h2>
     <div class="fun-machine-box glass-card">
@@ -494,6 +503,7 @@
     </div>
   </section>
 
+  <!-- SECTION 5: GALLERY CORE -->
   <section id="loveImages" class="section bg-images">
     <h2 class="section-title">📸 Captured Moments</h2>
     <div class="img-flex">
@@ -503,6 +513,7 @@
     </div>
   </section>
 
+  <!-- SECTION 6: REASONS MATRICES -->
   <section id="reasons" class="section bg-reasons">
     <h2 class="section-title">💝 Six Reasons You're The One</h2>
     <div class="reasons-container">
@@ -515,6 +526,7 @@
     </div>
   </section>
 
+  <!-- SECTION 7: DEEP WISHES AND DUAS -->
   <section id="wishes" class="section bg-wishes">
     <h2 class="section-title">✨ Pure Duas For You ✨</h2>
     <div class="glass-card" style="max-width:580px; width:100%; background: rgba(255,255,255,0.93); border: 2px solid #ff7675;">
@@ -528,17 +540,20 @@
     </div>
   </section>
 
+  <!-- SECTION 8: VIDEO SLIDER (Instant Autoplay + Clean Controls Fix) -->
   <section id="loveVideos" class="section bg-videos">
     <h2 class="section-title">🎥 Cinematic Memories</h2>
     <div class="glass-card video-slider-card">
       <div class="video-viewport">
-        <div id="loveVideoPoster" class="video-custom-poster">
-          <i class="fas fa-play-circle"></i>
-          <span>Tap to Play Memory ✨</span>
-        </div>
-        <video id="sliderVideoPlayer" preload="metadata">
+        <!-- Videos will autoplay smoothly since they start muted -->
+        <video id="sliderVideoPlayer" autoplay muted playsinline loop preload="auto">
           <source src="assets/videos/video1.mp4" type="video/mp4" />
         </video>
+        <!-- Floating Glassmorphism Controller Bar -->
+        <div class="video-controls-overlay">
+          <button class="vid-ctrl-btn" id="playPauseBtn1" title="Play/Stop"><i class="fas fa-pause"></i></button>
+          <button class="vid-ctrl-btn" id="muteBtn1" title="Mute/Unmute"><i class="fas fa-volume-mute"></i></button>
+        </div>
       </div>
       <p id="videoTitleDisplay" style="margin-top: 15px; font-weight: 700; color: var(--text-secondary); font-size: 1.05rem;">Memory Clip #1</p>
       <div class="wish-nav-row" style="margin-top: 15px;">
@@ -548,17 +563,20 @@
     </div>
   </section>
 
+  <!-- SECTION 9: FIRST MEETUP SPECIAL SLIDER (Instant Autoplay + Clean Controls Fix) -->
   <section id="firstMeetup" class="section bg-meetup">
-    <h2 class="section-title">👩‍❤️‍👨 Our First Date Memories 👩‍❤️‍👨</h2>
+    <h2 class="section-title">Our First Date Memories 👩‍❤️‍👨</h2>
     <div class="glass-card video-slider-card" style="border: 2px solid #ff4e50; box-shadow: 0 15px 45px rgba(255, 78, 80, 0.2);">
       <div class="video-viewport">
-        <div id="meetupVideoPoster" class="video-custom-poster" style="background: linear-gradient(135deg, #ff4757, #ff6b81);">
-          <i class="fas fa-heart"></i>
-          <span>Tap to See Our Meetup 💖</span>
-        </div>
-        <video id="meetupVideoPlayer" preload="metadata">
+        <!-- Autoplay + preload fixes render lag completely -->
+        <video id="meetupVideoPlayer" autoplay muted playsinline loop preload="auto">
           <source src="assets/videos/meetup1.mp4" type="video/mp4" />
         </video>
+        <!-- Floating Glassmorphism Controller Bar -->
+        <div class="video-controls-overlay">
+          <button class="vid-ctrl-btn" id="playPauseBtn2" title="Play/Stop"><i class="fas fa-pause"></i></button>
+          <button class="vid-ctrl-btn" id="muteBtn2" title="Mute/Unmute"><i class="fas fa-volume-mute"></i></button>
+        </div>
       </div>
       <p id="meetupVideoTitleDisplay" style="margin-top: 15px; font-weight: 700; color: var(--text-secondary); font-size: 1.15rem; font-family: var(--font-display);">First Date - Clip #1</p>
       <div class="wish-nav-row" style="margin-top: 15px;">
@@ -578,7 +596,7 @@
     password: '1109',
     riddleAns: 'amna',
     quizAnswers: {
-      q1: '2026-03-11', // 11 March 2026 Format Mapping
+      q1: '2026-03-11', 
       q2: 'black',
       q3: 'pamper'
     },
@@ -825,7 +843,6 @@
       document.body.classList.add('boom-impact');
       setTimeout(() => document.body.classList.remove('boom-impact'), 100);
 
-      // Spawning dynamic micro elements during acceleration clicks
       const clip = document.createElement('div');
       clip.style.position = 'absolute';
       clip.style.left = (Math.random() * 60 + 20) + '%';
@@ -1051,17 +1068,36 @@
     shiftWish(0);
   }
 
-  // INTERACTIVE VIDEO SLIDER LOGIC
+  // CINEMATIC VIDEOS INTERACTIVE SLIDER
   function initVideoSliderEngine() {
     let activeVideoIdx = 0;
     const player = $('#sliderVideoPlayer');
     const titleDis = $('#videoTitleDisplay');
-    const poster = $('#loveVideoPoster');
+    const playPauseBtn = $('#playPauseBtn1');
+    const muteBtn = $('#muteBtn1');
 
-    // Click handler to play video and fade poster
-    poster.addEventListener('click', () => {
-      poster.classList.add('playing');
-      player.play().catch(e => console.log("Play interrupted: ", e));
+    // Muted initial setup for hassle-free autoplay compatibility
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+
+    playPauseBtn.addEventListener('click', () => {
+      if (player.paused) {
+        player.play();
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        player.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+
+    muteBtn.addEventListener('click', () => {
+      if (player.muted) {
+        player.muted = false;
+        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      } else {
+        player.muted = true;
+        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      }
     });
 
     function loadActiveVideoFrame(directionStep) {
@@ -1071,13 +1107,17 @@
 
       const currentVidData = INVENTORY.videoPool[activeVideoIdx];
       
+      // Cache-friendly instant loading
       player.src = currentVidData.src;
       titleDis.textContent = currentVidData.title;
       
-      // Reset Poster
-      poster.classList.remove('playing');
-      player.pause();
       player.load();
+      player.play().then(() => {
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }).catch(e => {
+        console.log("Autoplay bypass: ", e);
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      });
     }
 
     $('#prevVideoBtn').addEventListener('click', () => loadActiveVideoFrame(-1));
@@ -1085,17 +1125,35 @@
     loadActiveVideoFrame(0);
   }
 
-  // NEW MEETUP SLIDER ENGINE
+  // MEETUP DATE VIDEOS SLIDER
   function initMeetupSliderEngine() {
     let activeMeetupIdx = 0;
     const player = $('#meetupVideoPlayer');
     const titleDis = $('#meetupVideoTitleDisplay');
-    const poster = $('#meetupVideoPoster');
+    const playPauseBtn = $('#playPauseBtn2');
+    const muteBtn = $('#muteBtn2');
 
-    // Custom poster play trigger
-    poster.addEventListener('click', () => {
-      poster.classList.add('playing');
-      player.play().catch(e => console.log("Play interrupted: ", e));
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+
+    playPauseBtn.addEventListener('click', () => {
+      if (player.paused) {
+        player.play();
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        player.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+
+    muteBtn.addEventListener('click', () => {
+      if (player.muted) {
+        player.muted = false;
+        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      } else {
+        player.muted = true;
+        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      }
     });
 
     function loadMeetupFrame(directionStep) {
@@ -1108,10 +1166,13 @@
       player.src = currentVidData.src;
       titleDis.textContent = currentVidData.title;
       
-      // Reset Poster state on transition
-      poster.classList.remove('playing');
-      player.pause();
       player.load();
+      player.play().then(() => {
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }).catch(e => {
+        console.log("Autoplay bypass: ", e);
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      });
     }
 
     $('#prevMeetupBtn').addEventListener('click', () => loadMeetupFrame(-1));
