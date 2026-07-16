@@ -39,6 +39,7 @@
     .bg-reasons { background: linear-gradient(45deg, #e6faff, #e6eeff, #ebe6ff); background-size: 300% 300%; animation: aurora 9s ease infinite; }
     .bg-wishes { background: linear-gradient(135deg, #ffebeb, #ffeefc, #e6f0ff); background-size: 300% 300%; animation: aurora 8s ease infinite; }
     .bg-videos { background: linear-gradient(225deg, #fff0f5, #eef2ff, #fbf0ff); background-size: 300% 300%; animation: aurora 10s ease infinite; }
+    .bg-meetup { background: linear-gradient(135deg, #ffe5ec, #ffc2d1, #ffb3c6); background-size: 300% 300%; animation: aurora 8s ease infinite; }
 
     @keyframes aurora {
       0%{background-position:0% 50%}
@@ -140,9 +141,9 @@
     .loader-fill{height:100%;width:0%;background:linear-gradient(90deg,#ff4e50,#ff7675);border-radius:10px;}
 
     /* FLOATING NAVBAR */
-    #floatingNav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:20px;padding:12px 25px;border-radius:60px;background:rgba(255, 255, 255, 0.88);backdrop-filter:blur(20px);border:1.5px solid rgba(255, 78, 80, 0.25);box-shadow: 0 12px 35px rgba(92,24,57,0.08);}
+    #floatingNav{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:12px;padding:12px 25px;border-radius:60px;background:rgba(255, 255, 255, 0.88);backdrop-filter:blur(20px);border:1.5px solid rgba(255, 78, 80, 0.25);box-shadow: 0 12px 35px rgba(92,24,57,0.08);}
     .nav-brand{font-family:var(--font-display);font-size:1.6rem;font-weight:700; color:var(--text-main);}
-    .nav-links{display:flex;gap:8px}
+    .nav-links{display:flex;gap:6px}
     .nav-links a{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--text-main);transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);font-size:1rem;text-decoration:none}
     .nav-links a:hover, .nav-links a.active{background:#ff4e50;color:#fff;transform:scale(1.15) rotate(8deg);box-shadow:0 5px 15px rgba(255,78,80,0.35)}
 
@@ -227,6 +228,43 @@
     .video-viewport { width: 100%; height: 350px; border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 4px solid #fff; position: relative; }
     .video-viewport video { width: 100%; height: 100%; object-fit: cover; }
 
+    /* VIDEO CUSTOM ROMANTIC POSTER OVERLAYS */
+    .video-custom-poster {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ff6b81, #ff4757);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      z-index: 5;
+      cursor: pointer;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .video-custom-poster i {
+      font-size: 4rem;
+      color: #fff;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
+      animation: beatPlayBtn 1.2s infinite alternate;
+    }
+    .video-custom-poster span {
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+    .video-custom-poster.playing {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    @keyframes beatPlayBtn {
+      from { transform: scale(1); }
+      to { transform: scale(1.15); }
+    }
+
     #heartsCanvasZone { position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden; }
     .boom-impact { animation: joltScreen 0.15s ease 3; }
     @keyframes joltScreen { 0%,100%{transform:translate(0,0)} 25%{transform:translate(-5px, 5px)} 75%{transform:translate(5px, -5px)} }
@@ -251,7 +289,6 @@
 </audio>
 <button id="audioToggleBtn" style="position:fixed; bottom:25px; right:25px; z-index:1000; padding:12px 22px; border-radius:30px; border:none; background:#ff4e50; color:#fff; font-weight:700; box-shadow:0 8px 22px rgba(255,78,80,0.35); cursor:pointer; display:none;">🎵 Music: OFF</button>
 
-<!-- LOADING COMPONENT -->
 <div id="loader">
   <div class="loader-wrap">
     <div class="loader-pulse">👑</div>
@@ -260,7 +297,6 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 1: PORTAL LOGIN STICKER DECK -->
 <div id="passwordScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px; position:relative;">
@@ -276,7 +312,6 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 2: RUNAWAY CHOICE ENGINE -->
 <div id="readyScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -291,7 +326,6 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 3: COMPLIANCE SIGNATURE AGREEMENT -->
 <div id="agreementScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -317,7 +351,6 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 4: THE SECRET ROMANTIC RIDDLE -->
 <div id="riddleScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:25px;">
@@ -334,7 +367,6 @@
   </div>
 </div>
 
-<!-- NEW SUSPENSE STAGE 4.5: THE ADVANCED LOVE QUIZ GATEKEEPER -->
 <div id="loveQuizScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -343,7 +375,6 @@
     <h2 id="quizTitle" style="font-size:1.5rem; margin-bottom:10px; font-weight:700;">💘 Love Testing Quiz</h2>
     <p id="quizInstructions" style="font-size:0.95rem; font-weight:600; color:var(--text-secondary); margin-bottom:20px; line-height:1.5;">Answer accurately to verify your clearance status! ✨</p>
     
-    <!-- QUESTION 1 CONTAINER -->
     <div id="quizBoxQ1" class="quiz-question-wrapper">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 1: Ham kab mily thy first time? 🗓️</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -351,7 +382,6 @@
       </div>
     </div>
 
-    <!-- QUESTION 2 CONTAINER -->
     <div id="quizBoxQ2" class="quiz-question-wrapper hidden">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 2: Tumhara favorite color konsa hy? 🎨</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -365,7 +395,6 @@
       </div>
     </div>
 
-    <!-- QUESTION 3 CONTAINER -->
     <div id="quizBoxQ3" class="quiz-question-wrapper hidden">
       <p style="font-weight:700; margin-bottom:15px; font-size:1.05rem; color:#ff4e50;">Question 3: Your Funny Nickname? 😜</p>
       <div class="pwd-input-area" style="margin-bottom:20px;">
@@ -377,7 +406,6 @@
   </div>
 </div>
 
-<!-- SUSPENSE STAGE 5: THE HAMID-METER POWER OVERLOAD -->
 <div id="meterGatewayScreen" class="wizard-overlay hidden">
   <div class="card-wizard glass-card">
     <div style="display:flex; justify-content:center; margin-bottom:20px;">
@@ -395,10 +423,8 @@
   </div>
 </div>
 
-<!-- FLOATING PARTICLES LAYER -->
 <div id="heartsCanvasZone"></div>
 
-<!-- MAIN PRESENTATION SITE CONTENT -->
 <div id="mainSite" class="hidden">
   
   <nav id="floatingNav">
@@ -412,10 +438,10 @@
       <a href="#reasons" title="Reasons"><i class="fas fa-list-ol"></i></a>
       <a href="#wishes" title="Wishes"><i class="fas fa-star"></i></a>
       <a href="#loveVideos" title="Videos"><i class="fas fa-video"></i></a>
+      <a href="#firstMeetup" title="First Meetup"><i class="fas fa-heartbeat"></i></a>
     </div>
   </nav>
 
-  <!-- SECTION 1: HERO MODULE -->
   <section id="hero" class="section bg-hero">
     <div class="glass-card" style="text-align:center; max-width:600px; width:100%;">
       <div class="cake-wrapper" id="cakeClickZone">
@@ -429,7 +455,6 @@
     </div>
   </section>
 
-  <!-- SECTION 2: TIMER COUNTDOWN -->
   <section id="countdown" class="section bg-countdown">
     <h2 class="section-title">⏳ The Birthday Countdown</h2>
     <div class="glass-card">
@@ -442,7 +467,6 @@
     </div>
   </section>
 
-  <!-- SECTION 3: LETTER STREAM -->
   <section id="loveLetter" class="section bg-letter">
     <h2 class="section-title">💌 A Letter From Hamid</h2>
     <div class="glass-card letter-box" id="clickableLetterBox">
@@ -459,7 +483,6 @@
     </div>
   </section>
 
-  <!-- SECTION 4: SHAYARI ENGINE -->
   <section id="funZone" class="section bg-fun">
     <h2 class="section-title">🎰 The Magic Smile Generator</h2>
     <div class="fun-machine-box glass-card">
@@ -471,7 +494,6 @@
     </div>
   </section>
 
-  <!-- SECTION 5: GALLERY CORE -->
   <section id="loveImages" class="section bg-images">
     <h2 class="section-title">📸 Captured Moments</h2>
     <div class="img-flex">
@@ -481,7 +503,6 @@
     </div>
   </section>
 
-  <!-- SECTION 6: REASONS MATRICES -->
   <section id="reasons" class="section bg-reasons">
     <h2 class="section-title">💝 Six Reasons You're The One</h2>
     <div class="reasons-container">
@@ -494,7 +515,6 @@
     </div>
   </section>
 
-  <!-- SECTION 7: DEEP WISHES AND DUAS -->
   <section id="wishes" class="section bg-wishes">
     <h2 class="section-title">✨ Pure Duas For You ✨</h2>
     <div class="glass-card" style="max-width:580px; width:100%; background: rgba(255,255,255,0.93); border: 2px solid #ff7675;">
@@ -508,13 +528,15 @@
     </div>
   </section>
 
-  <!-- NEW SECTION 8: PREMIUM VIDEO INTERACTIVE SLIDER -->
   <section id="loveVideos" class="section bg-videos">
     <h2 class="section-title">🎥 Cinematic Memories</h2>
     <div class="glass-card video-slider-card">
       <div class="video-viewport">
-        <!-- Videos will cycle gracefully via Javascript framework below -->
-        <video id="sliderVideoPlayer" controls preload="metadata" poster="https://picsum.photos/seed/videoCover/600/350">
+        <div id="loveVideoPoster" class="video-custom-poster">
+          <i class="fas fa-play-circle"></i>
+          <span>Tap to Play Memory ✨</span>
+        </div>
+        <video id="sliderVideoPlayer" preload="metadata">
           <source src="assets/videos/video1.mp4" type="video/mp4" />
         </video>
       </div>
@@ -522,6 +544,26 @@
       <div class="wish-nav-row" style="margin-top: 15px;">
         <button class="circle-arrow" id="prevVideoBtn"><i class="fas fa-arrow-left"></i></button>
         <button class="circle-arrow" id="nextVideoBtn"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="firstMeetup" class="section bg-meetup">
+    <h2 class="section-title">👩‍❤️‍👨 Our First Date Memories 👩‍❤️‍👨</h2>
+    <div class="glass-card video-slider-card" style="border: 2px solid #ff4e50; box-shadow: 0 15px 45px rgba(255, 78, 80, 0.2);">
+      <div class="video-viewport">
+        <div id="meetupVideoPoster" class="video-custom-poster" style="background: linear-gradient(135deg, #ff4757, #ff6b81);">
+          <i class="fas fa-heart"></i>
+          <span>Tap to See Our Meetup 💖</span>
+        </div>
+        <video id="meetupVideoPlayer" preload="metadata">
+          <source src="assets/videos/meetup1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <p id="meetupVideoTitleDisplay" style="margin-top: 15px; font-weight: 700; color: var(--text-secondary); font-size: 1.15rem; font-family: var(--font-display);">First Date - Clip #1</p>
+      <div class="wish-nav-row" style="margin-top: 15px;">
+        <button class="circle-arrow" id="prevMeetupBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="circle-arrow" id="nextMeetupBtn"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
   </section>
@@ -558,11 +600,20 @@
       {type:'urdu', val:"تم میری وہ خوشی ho جس کے سامنے\nدنیا کے سارے خزانے مٹی لگتے ہیں... ✨"}
     ],
     videoPool: [
-      {src: "assets/videos/video1.mp4", fallbackSeed: "lovevideo1", title: "Our Beautiful Journey Begins 🌸"},
-      {src: "assets/videos/video2.mp4", fallbackSeed: "lovevideo2", title: "The Sound of Your Laughter 🎵"},
-      {src: "assets/videos/video3.mp4", fallbackSeed: "lovevideo3", title: "Moments I Treasure Forever 💖"},
-      {src: "assets/videos/video4.mp4", fallbackSeed: "lovevideo4", title: "Every Single Day With You ✨"},
-      {src: "assets/videos/video5.mp4", fallbackSeed: "lovevideo5", title: "My Queen, My Entire World 👑"}
+      {src: "assets/videos/video1.mp4", title: "Our Beautiful Journey Begins 🌸"},
+      {src: "assets/videos/video2.mp4", title: "The Sound of Your Laughter 🎵"},
+      {src: "assets/videos/video3.mp4", title: "Moments I Treasure Forever 💖"},
+      {src: "assets/videos/video4.mp4", title: "Every Single Day With You ✨"},
+      {src: "assets/videos/video5.mp4", title: "My Queen, My Entire World 👑"}
+    ],
+    meetupPool: [
+      {src: "assets/videos/meetup1.mp4", title: "When My Eyes First Met Yours... 👀❤️"},
+      {src: "assets/videos/meetup2.mp4", title: "Our Very First Romantic Cup of Tea ☕✨"},
+      {src: "assets/videos/meetup3.mp4", title: "Hand in Hand, Walking Together 👩‍❤️‍👨"},
+      {src: "assets/videos/meetup4.mp4", title: "That Beautiful Smile of Yours on Our Date 😍"},
+      {src: "assets/videos/meetup5.mp4", title: "The Beautiful Shy Gaze You Gave Me... 🫣🌸"},
+      {src: "assets/videos/meetup6.mp4", title: "Capturing Our First Frame Together 📸💖"},
+      {src: "assets/videos/meetup7.mp4", title: "A Day Written in Gold Forever and Ever 👑🔒"}
     ]
   };
 
@@ -867,6 +918,7 @@
     initFunMachine();
     initWishesCarousel();
     initVideoSliderEngine();
+    initMeetupSliderEngine();
     runAmbientFloatingHearts();
     setupNavigationTracker();
   }
@@ -999,11 +1051,18 @@
     shiftWish(0);
   }
 
-  // NEW INTERACTIVE VIDEO SLIDER LOGIC
+  // INTERACTIVE VIDEO SLIDER LOGIC
   function initVideoSliderEngine() {
     let activeVideoIdx = 0;
     const player = $('#sliderVideoPlayer');
     const titleDis = $('#videoTitleDisplay');
+    const poster = $('#loveVideoPoster');
+
+    // Click handler to play video and fade poster
+    poster.addEventListener('click', () => {
+      poster.classList.add('playing');
+      player.play().catch(e => console.log("Play interrupted: ", e));
+    });
 
     function loadActiveVideoFrame(directionStep) {
       activeVideoIdx += directionStep;
@@ -1012,18 +1071,52 @@
 
       const currentVidData = INVENTORY.videoPool[activeVideoIdx];
       
-      // Graceful updates to source properties safely
       player.src = currentVidData.src;
-      player.poster = `https://picsum.photos/seed/${currentVidData.fallbackSeed}/600/350`;
       titleDis.textContent = currentVidData.title;
       
-      // Auto-buffering on direct transition updates
+      // Reset Poster
+      poster.classList.remove('playing');
+      player.pause();
       player.load();
     }
 
     $('#prevVideoBtn').addEventListener('click', () => loadActiveVideoFrame(-1));
     $('#nextVideoBtn').addEventListener('click', () => loadActiveVideoFrame(1));
-    loadActiveVideoFrame(0); // Initial boot routine sequence setup
+    loadActiveVideoFrame(0);
+  }
+
+  // NEW MEETUP SLIDER ENGINE
+  function initMeetupSliderEngine() {
+    let activeMeetupIdx = 0;
+    const player = $('#meetupVideoPlayer');
+    const titleDis = $('#meetupVideoTitleDisplay');
+    const poster = $('#meetupVideoPoster');
+
+    // Custom poster play trigger
+    poster.addEventListener('click', () => {
+      poster.classList.add('playing');
+      player.play().catch(e => console.log("Play interrupted: ", e));
+    });
+
+    function loadMeetupFrame(directionStep) {
+      activeMeetupIdx += directionStep;
+      if(activeMeetupIdx >= INVENTORY.meetupPool.length) activeMeetupIdx = 0;
+      if(activeMeetupIdx < 0) activeMeetupIdx = INVENTORY.meetupPool.length - 1;
+
+      const currentVidData = INVENTORY.meetupPool[activeMeetupIdx];
+      
+      player.src = currentVidData.src;
+      titleDis.textContent = currentVidData.title;
+      
+      // Reset Poster state on transition
+      poster.classList.remove('playing');
+      player.pause();
+      player.load();
+    }
+
+    $('#prevMeetupBtn').addEventListener('click', () => loadMeetupFrame(-1));
+    $('#nextMeetupBtn').addEventListener('click', () => loadMeetupFrame(1));
+    loadMeetupFrame(0);
   }
 
   function runAmbientFloatingHearts(){
