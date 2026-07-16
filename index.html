@@ -212,7 +212,7 @@
     .r-card h4 { font-family:var(--font-display); font-size:2.2rem; margin-bottom:12px; color: #ff4e50; }
     .r-card p { font-size: 0.98rem; line-height: 1.75; font-weight: 500; color: var(--text-secondary); }
 
-    /* SUSPENSE DYNAMIC METER */
+    /* SUSPENSE DYNAMIC METER (MANDATORY GATEWAY PRE-LOAD) */
     .meter-track { width: 100%; height: 26px; background: rgba(0,0,0,0.05); border-radius: 20px; overflow: hidden; margin: 25px 0; border: 2px solid #fff; position: relative; }
     .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff7675, #ff4e50, #d63031); transition: width 0.15s cubic-bezier(0.1, 0.8, 0.3, 1); border-radius: 20px; }
     .meter-percentage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: var(--text-main); mix-blend-mode: multiply; }
@@ -223,10 +223,29 @@
     .circle-arrow { background: rgba(255, 78, 80, 0.08); border:1.5px solid rgba(255, 78, 80, 0.15); width:46px; height:46px; border-radius:50%; color:#ff4e50; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size: 1.15rem; }
     .circle-arrow:hover { background:#ff4e50; color:#fff; transform: scale(1.1); }
 
-    /* VIDEO CAROUSEL WITH OVERLAY CONTROLS */
+    /* 🎥 VIDEO CAROUSEL WITH OVERLAY CONTROLS (UPDATED SETTINGS) */
     .video-slider-card { max-width: 650px; width:100%; text-align:center; padding: 25px; background: rgba(255, 255, 255, 0.6); }
-    .video-viewport { width: 100%; height: 350px; border-radius: 24px; overflow: hidden; background: #000; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 4px solid #fff; position: relative; }
-    .video-viewport video { width: 100%; height: 100%; object-fit: cover; }
+    .video-viewport { 
+      width: 100%; 
+      height: auto; 
+      max-height: 65vh; 
+      border-radius: 24px; 
+      overflow: hidden; 
+      background: #000; 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+      border: 4px solid #fff; 
+      position: relative; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .video-viewport video { 
+      width: 100% !important; 
+      height: auto !important; 
+      max-height: 65vh !important; 
+      object-fit: contain !important; 
+      display: block;
+    }
 
     /* FLOATING VIDEO CONTROLS */
     .video-controls-overlay {
@@ -271,7 +290,7 @@
       .img-frame { width: 150px; height: 150px; }
       #floatingNav { padding: 10px 14px; }
       .nav-brand { display:none; }
-      .video-viewport { height: 240px; }
+      .video-viewport { max-height: 55vh; } /* Mobile par vertical videos ke hisab se set kar diya */
     }
   </style>
 </head>
@@ -734,7 +753,7 @@
     $('#riddleAnswer').addEventListener('keydown', e => { if(e.key === 'Enter') verifyRiddle(); });
   }
 
-  // STAGE 4.5: THE ADVANCED LOVE QUIZ GATEKEEPER
+  // NEW STAGE 4.5: LOVE TESTING QUIZ ENGINE WITH SEQUENTIAL ARCHITECTURE
   let activeQuizStep = 1;
   function triggerLoveQuizStage() {
     $('#loveQuizScreen').classList.remove('hidden');
@@ -793,7 +812,7 @@
     }
   }
 
-  // STAGE 5: FINAL PERFORMANCE METER OVERLOAD
+  // STAGE 5: FINAL PERFORMANCE METER OVERLOAD CONTEXT
   function triggerMeterGatewayStage() {
     $('#meterGatewayScreen').classList.remove('hidden');
     let currentCharge = 0;
@@ -847,7 +866,7 @@
     });
   }
 
-  // DETONATING BLAST AND SYSTEM LAUNCH
+  // DETONATING BLAST AND SYSTEM LOAD EXECUTION
   function detonatingSystemLaunch(){
     setTimeout(() => {
       $('#meterGatewayScreen').style.display = 'none';
@@ -882,7 +901,7 @@
     }, 400);
   }
 
-  // MUSIC TRACK CONTROLLERS
+  // BACKGROUND SOUND CONTROL TUNNEL
   let trackPlaying = false;
   window.handleMusicTrack = function(forceIntent = false) {
     const audio = $('#loveEngineRoom');
@@ -898,7 +917,7 @@
   };
   $('#audioToggleBtn').addEventListener('click', () => handleMusicTrack());
 
-  // CORE SITE LAUNCH ENGINE
+  // CORE LAUNCH DISTRIBUTION ENGINE
   function executeMainOperation(){
     initHeroCandleSystem();
     runCountdownEngine();
@@ -1039,7 +1058,7 @@
     shiftWish(0);
   }
 
-  // CINEMATIC VIDEOS SLIDER (WITH INTEGRATED AUTO-FALLBACK)
+  // CINEMATIC VIDEOS INTERACTIVE SLIDER
   function initVideoSliderEngine() {
     let activeVideoIdx = 0;
     const player = $('#sliderVideoPlayer');
@@ -1077,7 +1096,6 @@
 
       const currentVidData = INVENTORY.videoPool[activeVideoIdx];
       
-      player.dataset.fallbackTriggered = "false"; // reset fallback trigger
       player.src = currentVidData.src;
       titleDis.textContent = currentVidData.title;
       
@@ -1085,24 +1103,15 @@
       player.play().then(() => {
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
       }).catch(e => {
-        console.log("Autoplay context wait.");
+        console.log("Autoplay bypass: ", e);
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
       });
     }
 
-    // Smart Fallback Core: If "assets/videos/x.mp4" fails, automatically try direct root "x.mp4"
+    // Direct error display on-screen for easy troubleshooting
     player.onerror = () => {
       const currentVidData = INVENTORY.videoPool[activeVideoIdx];
-      if (player.dataset.fallbackTriggered !== "true") {
-        player.dataset.fallbackTriggered = "true";
-        const filename = currentVidData.src.split('/').pop(); // Extract filename (e.g., video1.mp4)
-        console.log("Assets path failed. Retrying fallback direct root path: ", filename);
-        player.src = filename;
-        player.load();
-        player.play().catch(e => console.log("Fallback play blocked."));
-      } else {
-        titleDis.innerHTML = `<span style="color:#ff4e50; font-weight:bold;">⚠️ Video File Not Found!</span><br><small style="font-size:0.85rem; color:#d63031;">Make sure "<b>${currentVidData.src}</b>" or "<b>${currentVidData.src.split('/').pop()}</b>" is in the folder.</small>`;
-      }
+      titleDis.innerHTML = `<span style="color:#ff4e50; font-weight:bold;">⚠️ Video Load Error!</span><br><small style="font-size:0.85rem; color:#d63031;">File "<b>${currentVidData.src}</b>" not found or unsupported format.</small>`;
     };
 
     $('#prevVideoBtn').addEventListener('click', () => loadActiveVideoFrame(-1));
@@ -1110,7 +1119,7 @@
     loadActiveVideoFrame(0);
   }
 
-  // MEETUP DATE VIDEOS SLIDER (WITH INTEGRATED AUTO-FALLBACK)
+  // MEETUP DATE VIDEOS SLIDER (ERROR-PROOFED FOR MOBILE & DESKTOP)
   function initMeetupSliderEngine() {
     let activeMeetupIdx = 0;
     const player = $('#meetupVideoPlayer');
@@ -1148,7 +1157,7 @@
 
       const currentVidData = INVENTORY.meetupPool[activeMeetupIdx];
       
-      player.dataset.fallbackTriggered = "false"; // reset fallback trigger
+      // Inject source directly on video object for stable cross-platform performance
       player.src = currentVidData.src;
       titleDis.textContent = currentVidData.title;
       
@@ -1156,24 +1165,15 @@
       player.play().then(() => {
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
       }).catch(e => {
-        console.log("Autoplay context wait.");
+        console.log("Autoplay context bypass applied.", e);
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
       });
     }
 
-    // Smart Fallback Core: If "assets/videos/x.mp4" fails, automatically try direct root "x.mp4"
+    // Direct error callback with active live diagnostic report
     player.onerror = () => {
       const currentVidData = INVENTORY.meetupPool[activeMeetupIdx];
-      if (player.dataset.fallbackTriggered !== "true") {
-        player.dataset.fallbackTriggered = "true";
-        const filename = currentVidData.src.split('/').pop(); // Extract filename (e.g., meetup1.mp4)
-        console.log("Assets path failed. Retrying fallback direct root path: ", filename);
-        player.src = filename;
-        player.load();
-        player.play().catch(e => console.log("Fallback play blocked."));
-      } else {
-        titleDis.innerHTML = `<span style="color:#ff4e50; font-weight:bold;">⚠️ Video File Not Found!</span><br><small style="font-size:0.85rem; color:#d63031;">Make sure "<b>${currentVidData.src}</b>" or "<b>${currentVidData.src.split('/').pop()}</b>" is in the folder.</small>`;
-      }
+      titleDis.innerHTML = `<span style="color:#ff4e50; font-weight:bold;">⚠️ Video File Not Found!</span><br><small style="font-size:0.85rem; color:#d63031;">Make sure "<b>${currentVidData.src}</b>" is physically inside assets/videos/ folder & is in standard MP4 format.</small>`;
     };
 
     $('#prevMeetupBtn').addEventListener('click', () => loadMeetupFrame(-1));
@@ -1223,5 +1223,5 @@
   runLoader();
 })();
 </script>
-</body>
+</body> 
 </html>
